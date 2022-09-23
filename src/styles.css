@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+/* body { margin: 0; font-family: 'Montserrat', sans-serif !important; } */
+
+.fonte-padrao{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.mat-calendar-body-selected{
+    background-color: rgb(187, 186, 186);
+    color: rgb(53, 53, 53);
+}

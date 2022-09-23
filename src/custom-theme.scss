@@ -1,0 +1,82 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$projeto-usabilidade-primary: mat.define-palette(mat.$indigo-palette);
+$projeto-usabilidade-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$projeto-usabilidade-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$projeto-usabilidade-theme: mat.define-light-theme((
+  color: (
+    primary: $projeto-usabilidade-primary,
+    accent: $projeto-usabilidade-accent,
+    warn: $projeto-usabilidade-warn,
+  )
+));
+
+/* SCSS RGB */
+$bdazzled-blue: rgba(61, 90, 128, 1);
+$dark-sky-blue: rgba(152, 193, 217, 1);
+$dark-sky-blue-disabled: rgba(152, 193, 217, .38);
+$light-cyan: rgba(224, 251, 252, 1);
+$light-cyan-disabled: rgba(224, 251, 252, 0.38);
+$burnt-sienna: rgba(238, 108, 77, 1);
+$gunmetal: rgba(41, 50, 65, 1);
+
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+$gradient-right: linear-gradient(90deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+$gradient-bottom: linear-gradient(180deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+$gradient-left: linear-gradient(270deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+$gradient-top-right: linear-gradient(45deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+$gradient-bottom-right: linear-gradient(135deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+$gradient-top-left: linear-gradient(225deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+$gradient-bottom-left: linear-gradient(315deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+$gradient-radial: radial-gradient(#3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
+
+.painel-agendamento{
+  background-color: $bdazzled-blue;
+  color: $dark-sky-blue !important;
+}
+
+.calendario{
+  background-color: $bdazzled-blue !important;
+  color: $dark-sky-blue !important;
+}
+
+.mat-calendar-body-selected{
+  background-color: $burnt-sienna !important;
+  color: $dark-sky-blue !important;
+}
+
+.mat-calendar-body-cell-content, .mat-date-range-input-separator, .mat-calendar-table-header, .mat-calendar-body-label{
+  color: $light-cyan !important;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical){
+  border-color: $dark-sky-blue-disabled !important;
+}
+
+.mat-calendar-body-disabled > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical){
+  color: $dark-sky-blue-disabled !important;
+}
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($projeto-usabilidade-theme);
+

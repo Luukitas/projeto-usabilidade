@@ -1,0 +1,28 @@
+body{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.painel-inicial{
+    margin: 10px;
+}
+
+.painel-agendamento{
+    /* background-color: rgb(76, 183, 233); */
+    border-radius: 7px;
+    box-shadow: none;
+    /* color: white !important; */
+    padding: 10px;
+    width: 100%;
+}
+
+.painel-agendamento p {
+    margin: 0;
+}
+
+.calendario{
+    background-color: rgb(76, 183, 233);
+    width: 65%;
+    box-shadow: none;
+    padding: 0;
+}
+
