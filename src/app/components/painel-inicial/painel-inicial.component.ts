@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PainelInicialService } from "../services/painel-inicial-services/painel-inicial.service";
-import { Consultas } from "../models/consultas";
+import { PainelInicialService } from "../../services/painel-inicial-services/painel-inicial.service";
+import { Consultas } from "../../models/consultas";
 
 @Component({
   selector: 'app-painel-inicial',
@@ -15,27 +15,26 @@ export class PainelInicialComponent implements OnInit {
 
   numero:any;
 
+  dataHoje = {
+    // "data": new Date()
+    'idade': 21
+  }
+
   consultas!: Consultas[];
 
   selected: Date | null | undefined;
   minDate: Date | null | undefined;
-
-  listaItem = [
-    {nome: "Consulta X"},
-    {nome: "Consulta Y"},
-    {nome: "Consulta Z"}
-  ];
 
   // selecionado: Date | null;
 
   ngOnInit(): void {
     this.selected = new Date();
     this.minDate = this.selected;
-    this.pesquisarConsulta();
+    this.pesquisarConsulta(this.dataHoje);
   }
 
-  pesquisarConsulta = () => {
-    this.painelInicialService.getConsultas().subscribe((data: Consultas[]) =>{
+  pesquisarConsulta = (entrada: any) => {
+    this.painelInicialService.getConsultas(entrada).subscribe((data: Consultas[]) =>{
       this.consultas = data;
     });
   }

@@ -1,6 +1,7 @@
 export interface Consultas {
-    id: undefined,
-    nome: string,
     idade: number,
+    id: any,
+    nome: string,
+    data: Date,
     descricao: string
 }

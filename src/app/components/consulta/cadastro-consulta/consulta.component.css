@@ -1,0 +1,10 @@
+body{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.formulario-cadastro{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 70%;
+}

@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-12">
+        <h1 class="display-6">Agendar consulta</h1>
+    </div>
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form action="">
+            <div class="mb-3">
+                <label class="form-label" for="nome">Nome do paciente:</label>
+                <input class="form-control" type="text" name="Nome" id="nome">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="nome">CPF:</label>
+                <input class="form-control" type="text" [ngModel]="this.valorCpf | date: 'dd/MM/yyyy'" (keypress)="this.formatarCpf()" maxlength="14" name="Nome" id="nome">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="nome">E-mail:</label>
+                <input class="form-control" type="email" name="Nome" id="nome">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="data">Data do agendamento:</label>
+                <input class="form-control" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" [(ngModel)]="this.valorData" (ngModelChange)="this.mostrarValorData();" type="date" name="Data" id="data">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="descricao">Descrição: (opcional)</label>
+                <br>
+                <textarea class="form-control" name="descricao" id="descricao" cols="30" rows="6"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>

@@ -10,7 +10,7 @@
                 </h5>
                 <div class="painel-agendamento d-flex justify-content-center">
                     <mat-card class="demo-inline-calendar-card calendario">
-                        <mat-calendar [(selected)]="selected" [minDate]="minDate" (selectedChange)="this.pesquisarConsulta()"></mat-calendar>
+                        <mat-calendar [(selected)]="selected" [minDate]="minDate" (selectedChange)="this.pesquisarConsulta(this.dataHoje)"></mat-calendar>
                     </mat-card>
                 </div>
                 <ul class="list-group list-group-flush mt-2">
@@ -27,7 +27,7 @@
         </div> 
         
         <div class="col-12 col-md-6 ">
-            <button class="btn btn-outline-primary">Agendar consulta</button>
+            <button routerLink="/cadastro-consulta" class="btn btn-outline-primary">Agendar consulta</button>
         </div> 
     </div>
 </div>

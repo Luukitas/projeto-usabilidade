@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, filter } from 'rxjs/operators';
 import { Consultas } from "../../models/consultas";
 
 @Injectable({
@@ -9,15 +9,28 @@ import { Consultas } from "../../models/consultas";
 })
 export class PainelInicialService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private httpClient:HttpClient) { }
 
-  dataUrl = "http://localhost:8080/api/v1/consultas"
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
-  getConsultas(): Observable<Consultas[]> {
-    return this.http.get<Consultas[]>(this.dataUrl)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
+  url:string = "http://localhost:8080/api/v1/consultas"
+
+  
+  getConsultas(entrada: Consultas): Observable<Consultas[]> {
+    const filters = JSON.parse(JSON.stringify(entrada));
+    const params = new HttpParams({
+      fromObject: entrada as any
+    })
+    console.log(entrada);
+    console.log(params);
+    console.log(filters);
+    
+    return this.httpClient.get<Consultas[]>(this.url, {params: params})
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
       );
   }
 
