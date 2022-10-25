@@ -13,29 +13,39 @@ export class PainelInicialComponent implements OnInit {
 
   nomeUsuario: String = "Lucas"
 
-  numero:any;
-
-  dataHoje = {
-    // "data": new Date()
-    'idade': 21
-  }
-
   consultas!: Consultas[];
-
-  selected: Date | null | undefined;
-  minDate: Date | null | undefined;
-
-  // selecionado: Date | null;
-
+  mostrarVazio?:boolean;
+  
+  selected?: Date | null | undefined;
+  minDate: Date | null | undefined = this.selected;
+  
+  dataHoje = {
+    "data": this.selected
+    // 'idade': 21
+  }
+  
   ngOnInit(): void {
     this.selected = new Date();
-    this.minDate = this.selected;
     this.pesquisarConsulta(this.dataHoje);
+    
   }
 
   pesquisarConsulta = (entrada: any) => {
+    entrada.data = this.selected;
+    let dia = entrada.data.getDate();
+    let mes = entrada.data.getMonth() + 1;
+    let ano = entrada.data.getFullYear();
+    let data = `${dia}/${mes}/${ano}`
+    entrada.data = data;
+    
     this.painelInicialService.getConsultas(entrada).subscribe((data: Consultas[]) =>{
       this.consultas = data;
+      if (this.consultas.length === 0) {
+        this.mostrarVazio = true;
+      }else{
+        this.mostrarVazio = false;
+      }
+      console.log(this.consultas);
     });
   }
 

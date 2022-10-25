@@ -9,17 +9,21 @@ import { PainelInicialComponent } from './components/painel-inicial/painel-inici
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
-import {MatNativeDateModule} from '@angular/material/core'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core'
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { DetalheConsultaComponent } from './components/consulta/detalhe-consulta/detalhe-consulta.component';
+import { EditaConsultaComponent } from './components/consulta/edita-consulta/edita-consulta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConsultaComponent,
     PainelInicialComponent,
-    DetalheConsultaComponent
+    DetalheConsultaComponent,
+    EditaConsultaComponent
   ],
   imports: [
     BrowserModule,
@@ -28,10 +32,15 @@ import { DetalheConsultaComponent } from './components/consulta/detalhe-consulta
     MatDatepickerModule,
     MatCardModule,
     MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

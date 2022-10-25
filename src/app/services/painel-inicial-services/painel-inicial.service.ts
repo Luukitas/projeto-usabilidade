@@ -19,13 +19,9 @@ export class PainelInicialService {
 
   
   getConsultas(entrada: Consultas): Observable<Consultas[]> {
-    const filters = JSON.parse(JSON.stringify(entrada));
     const params = new HttpParams({
       fromObject: entrada as any
     })
-    console.log(entrada);
-    console.log(params);
-    console.log(filters);
     
     return this.httpClient.get<Consultas[]>(this.url, {params: params})
     .pipe(

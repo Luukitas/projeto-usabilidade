@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ConsultaService } from 'src/app/services/consulta-services/consulta.service';
+import { Consultas } from 'src/app/models/consultas';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-detalhe-consulta',
@@ -7,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalheConsultaComponent implements OnInit {
 
-  constructor() { }
+  consulta: any = {}
+  entrada!: any;
+
+  constructor(private consultaService: ConsultaService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.entrada = {
+      _id: id
+    };
+    this.pesquisarConsulta(this.entrada)
+  }
+
+  pesquisarConsulta = (entrada: any) => {
+    this.consultaService.getConsulta(entrada).subscribe((data: Consultas[]) =>{
+      this.consulta = data;
+      console.log(this.consulta);
+      
+    });
+  }
+
+  cancelarConsuta = (entrada: any) => {
+    this.consultaService.deleteConsulta(entrada).subscribe(() =>{});
+    this.router.navigate([''])
   }
 
 }

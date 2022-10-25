@@ -13,14 +13,23 @@
                         <mat-calendar [(selected)]="selected" [minDate]="minDate" (selectedChange)="this.pesquisarConsulta(this.dataHoje)"></mat-calendar>
                     </mat-card>
                 </div>
-                <ul class="list-group list-group-flush mt-2">
+                <ul *ngIf="!this.mostrarVazio" class="list-group list-group-flush mt-2">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <strong>Paciente</strong>
                         <strong class="mr-4">Ação</strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let consulta of consultas">
                         {{consulta.nome}}
-                        <button class="btn btn-outline-secondary">Consultar</button>
+                        <button class="btn btn-outline-secondary" [routerLink]="['/detalhe-consulta', consulta._id]">Consultar</button>
+                    </li>
+                </ul>
+                <ul *ngIf="this.mostrarVazio" class="list-group list-group-flush mt-2">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Paciente</strong>
+                        <strong class="mr-4">Ação</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-center align-items-center bg-light">
+                        Nenhuma consulta agendada
                     </li>
                 </ul>
             </div>

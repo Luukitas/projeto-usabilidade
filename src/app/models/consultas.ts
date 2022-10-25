@@ -1,7 +1,8 @@
 export interface Consultas {
-    idade: number,
-    id: any,
+    _id?: any, // Assim ele fica como opcional
+    cpf: string,
+    email: string,
     nome: string,
-    data: Date,
+    data: any,
     descricao: string
 }

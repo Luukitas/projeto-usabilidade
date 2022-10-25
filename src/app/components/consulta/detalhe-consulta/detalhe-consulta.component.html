@@ -1,1 +1,36 @@
-<p>detalhe-consulta works!</p>
+<div class="row">
+    <div class="col-1 d-flex justify-content-end align-items-center mb-5">
+        <a routerLink="/" class="text-secondary h6"><i class="bi bi-chevron-left"></i>voltar</a>
+    </div>
+    <div class="col-11 d-flex justify-content-center align-items-center mb-5">
+        <p class="display-6">Detalhe da consulta</p>
+    </div>
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <p class="lead mb-1" style="font-size: 18px;">Nome do paciente</p>
+                <p class="h4 m-0">{{this.consulta.nome}}</p>
+            </div>
+            <div class="col-12 mb-4">
+                <p class="lead mb-1" style="font-size: 18px;">Data da Consulta</p>
+                <p class="h4 m-0">{{this.consulta.data}}</p>
+            </div>
+            <div class="col-12 mb-4">
+                <p class="lead mb-1" style="font-size: 18px;">E-mail do paciente</p>
+                <p class="h4 m-0">{{this.consulta.email}}</p>
+            </div>
+            <div class="col-12 mb-4">
+                <p class="lead mb-1" style="font-size: 18px;">Descrição</p>
+                <p class="h4 m-0">{{this.consulta.descricao}}</p>
+            </div>
+
+            <div class="col-12 mb-4">
+                <button type="button" (click)="this.cancelarConsuta(this.entrada);" class="btn btn-outline-danger mr-3">Cancelar Consulta</button>
+                <button type="button" [routerLink]="['/editar-consulta', this.consulta._id]" class="btn btn-primary m-3">Editar Consulta</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+
