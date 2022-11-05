@@ -1,0 +1,63 @@
+<mat-card>
+  <form (submit)="onCadastrarUsuario(usuarioForm)" #usuarioForm="ngForm">
+
+<mat-form-field class="nome">
+  <mat-label>Nome Completo</mat-label>
+  <input required pattern="[aA-zZÀ-ž\s]+" minlength="2" type="text" matInput
+  placeholder="ex: Antônio Drauzio Varella" name="nome" ngModel #nome="ngModel">
+  <mat-error *ngIf="nome.invalid">Digite um nome válido</mat-error>
+</mat-form-field>
+
+<mat-form-field class="cpf">
+  <mat-label>Informe seu CPF</mat-label>
+  <input required minlength="14" maxlength="14" type="text" matInput
+  placeholder="ex: 123.456.789-10" name="cpf" ngModel #cpf="ngModel"
+  [(ngModel)]="this.valorCpf" (keypress)="this.formatarCpf()">
+  <mat-error *ngIf="nome.invalid">Digite um nome válido</mat-error>
+</mat-form-field>
+
+<mat-form-field class="idade">
+  <input required pattern="[0-9]+" minlength="2" maxlength="2" type="text" matInput
+  placeholder="Idade" name="idade" ngModel #idade="ngModel">
+  <mat-error *ngIf="idade.invalid"></mat-error>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="tipo">
+  <mat-label>Tipo de usuário</mat-label>
+  <mat-select required name="tipo" ngModel #tipo="ngModel">
+    <mat-option *ngFor="let usuario of usuarios" [value]="usuario.value">
+      {{usuario.viewValue}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="tipo.invalid">Selecione um tipo de usuário</mat-error>
+</mat-form-field>
+
+<mat-form-field class="contato">
+  <mat-label>Contato</mat-label>
+  <input pattern="[0-9\s-()+]+" maxlength="19" type="text" matInput
+  placeholder="ex: 11 91234-5678" name="contato" ngModel #contato="ngModel">
+  <mat-error *ngIf="contato.invalid">Digite um número de contato válido</mat-error>
+</mat-form-field>
+
+<mat-form-field class="crm">
+  <mat-label>Registro CRM</mat-label>
+  <input type="text" pattern="[aA-zZ0-9\s/]+" maxlength="13" matInput
+  placeholder="ex: CRM/SP 123456" name="crm" ngModel #crn="ngModel">
+</mat-form-field>
+
+<mat-form-field class="email">
+  <mat-label>Digite um e-mail (será usado no login)</mat-label>
+  <input required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+[a-z]{2,4}" type="text" matInput
+  placeholder="E-mail" name="email" ngModel #email="ngModel">
+  <mat-error *ngIf="email.invalid">Digite um e-mail válido</mat-error>
+</mat-form-field>
+
+<mat-form-field class="senha">
+  <input required pattern="[aA-zZ0-9()-=@!#$%&*?]+" type="text" matInput
+  placeholder="Senha" name="senha" ngModel #senha="ngModel">
+  <mat-error>Digite uma senha válida</mat-error>
+</mat-form-field>
+
+<button routerLink="/login" class="botao" mat-raised-button color="warn">Cadastrar</button>
+  </form>
+</mat-card>
