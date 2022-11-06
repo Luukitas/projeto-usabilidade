@@ -34,7 +34,7 @@
 
 <mat-form-field class="contato">
   <mat-label>Contato</mat-label>
-  <input pattern="[0-9\s-()+]+" maxlength="19" type="text" matInput
+  <input pattern="[0-9\s-()+]+" minlength="8" maxlength="19" type="text" matInput
   placeholder="ex: 11 91234-5678" name="contato" ngModel #contato="ngModel">
   <mat-error *ngIf="contato.invalid">Digite um número de contato válido</mat-error>
 </mat-form-field>
@@ -42,7 +42,7 @@
 <mat-form-field class="crm">
   <mat-label>Registro CRM</mat-label>
   <input type="text" pattern="[aA-zZ0-9\s/]+" maxlength="13" matInput
-  placeholder="ex: CRM/SP 123456" name="crm" ngModel #crn="ngModel">
+  placeholder="ex: CRM/SP 123456" name="crm" ngModel #crm="ngModel">
 </mat-form-field>
 
 <mat-form-field class="email">
@@ -53,11 +53,18 @@
 </mat-form-field>
 
 <mat-form-field class="senha">
-  <input required pattern="[aA-zZ0-9()-=@!#$%&*?]+" type="text" matInput
-  placeholder="Senha" name="senha" ngModel #senha="ngModel">
+  <input required pattern="[aA-zZ0-9()-=@!#$%&*?]+" type="password" matInput
+  placeholder="Insira sua senha" name="password" ngModel #senha="ngModel">
   <mat-error>Digite uma senha válida</mat-error>
 </mat-form-field>
 
-<button routerLink="/login" class="botao" mat-raised-button color="warn">Cadastrar</button>
+<mat-form-field class="senha">
+  <input required pattern="[aA-zZ0-9()-=@!#$%&*?]+" type="password" matInput
+  placeholder="Confirme sua senha" name="confirmarSenha" ngModel #confirmarSenha="ngModel">
+  <mat-error *ngIf="confirmarSenha.invalid">Digite uma senha válida</mat-error>
+</mat-form-field>
+
+<button class="botao mb-3" mat-raised-button color="warn">Cadastrar</button>
+<p class="text-center">Já tem uma conta? <a data-toggle="tab" [href]="['login']">Fazer login</a></p>
   </form>
 </mat-card>

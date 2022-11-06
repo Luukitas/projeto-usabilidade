@@ -7,11 +7,11 @@ import { AppComponent } from './app.component';
 import { ConsultaComponent } from './components/consulta/cadastro-consulta/consulta.component';
 import { PainelInicialComponent } from './components/painel-inicial/painel-inicial.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';

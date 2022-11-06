@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Usuario } from "src/app/models/usuario";
+import { Usuarios } from "src/app/models/usuarios";
 import { UsuarioService } from 'src/app/services/usuarios-services/usuarios.service';
 
-interface Usuarios {
+interface Usuario {
   value: string;
   viewValue: string;
 }
@@ -21,9 +21,9 @@ export class CadastroUsuarioComponent {
 
   valorCpf: string = "";
 
-  usuario!: Usuario;
+  usuario!: Usuarios;
 
-  usuarios: Usuarios[] = [
+  usuarios: Usuario[] = [
     {value: 'medico-0', viewValue: 'Médico'},
     {value: 'recepcionista-1', viewValue: 'Recepcionista'},
   ];
@@ -48,12 +48,9 @@ export class CadastroUsuarioComponent {
       form.value.contato,
       form.value.email,
       form.value.senha,
+      form.value.confirmarSenha,
       form.value.tipoUsuario
       );
     form.resetForm();
-
-    this.usuarioService.salvarUsuario(this.usuario).subscribe((response) => {
-      console.log(response);
-    })
   }
 }
