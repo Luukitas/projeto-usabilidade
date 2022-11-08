@@ -5,10 +5,12 @@ import { DetalheConsultaComponent } from './components/consulta/detalhe-consulta
 import { EditaConsultaComponent } from './components/consulta/edita-consulta/edita-consulta.component';
 import { PainelInicialComponent } from './components/painel-inicial/painel-inicial.component';
 import { LoginUsuarioComponent } from './components/usuarios/login/login-usuario/login-usuario.component';
+import { CadastroUsuarioComponent } from './components/usuarios/cadastro-usuario/cadastro-usuario.component'
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: "login", component: LoginUsuarioComponent},
+  {path: "cadastro-usuario", component: CadastroUsuarioComponent},
   {path: "cadastro-consulta", component: ConsultaComponent},
   {path: "painel-inicial", component: PainelInicialComponent},
   {path: "detalhe-consulta/:id", component: DetalheConsultaComponent},
