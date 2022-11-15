@@ -19,6 +19,7 @@ import { DatePipe } from '@angular/common';
 import { DetalheConsultaComponent } from './components/consulta/detalhe-consulta/detalhe-consulta.component';
 import { EditaConsultaComponent } from './components/consulta/edita-consulta/edita-consulta.component';
 import { CadastroUsuarioComponent } from 'src/app/components/usuarios/cadastro-usuario/cadastro-usuario.component';
+import { LoginUsuarioComponent } from './components/usuarios/login/login-usuario/login-usuario.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CadastroUsuarioComponent } from 'src/app/components/usuarios/cadastro-u
     DetalheConsultaComponent,
     EditaConsultaComponent,
     CadastroUsuarioComponent,
+    LoginUsuarioComponent
   ],
   imports: [
     BrowserModule,

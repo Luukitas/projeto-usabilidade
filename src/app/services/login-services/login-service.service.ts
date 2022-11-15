@@ -1,4 +1,4 @@
-import { Usuarios } from "src/app/models/usuarios";
+import { Login } from "src/app/models/login";
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
 import { retry, catchError, filter } from 'rxjs/operators';
 import { Subject, Observable, throwError } from "rxjs";
@@ -10,17 +10,17 @@ import { Injectable } from '@angular/core';
 
 export class LoginService {
 
-  private usuarios: Usuarios[] = [];
-  private listaUsuariosAtualizada = new Subject<Usuarios[]>();
+  private usuario: Login[] = [];
+  private listaUsuariosAtualizada = new Subject<Login[]>();
   url: string = "http://localhost:8080/api/v1/usuarios"
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsuarios(entrada: Usuarios): Observable<Usuarios[]> {
+  getUsuarios(entrada: Login): Observable<Login[]> {
     const params = new HttpParams({
       fromObject: entrada as any
     })
-    return this.httpClient.get<Usuarios[]>(this.url + '/' + entrada.id, {params: params})
+    return this.httpClient.get<Login[]>(this.url, {params: params})
     .pipe(
       retry(2),
       catchError(this.handleError)
