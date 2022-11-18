@@ -1,8 +1,7 @@
 import { Usuarios } from "src/app/models/usuarios";
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
-import { retry, catchError, filter } from 'rxjs/operators';
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject, Observable, throwError } from "rxjs";
+import { Subject } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
@@ -14,7 +13,7 @@ export class UsuarioService {
 
   constructor(private httpClient: HttpClient) { }
 
-  cadastrarUsuario(nome: string, cpf: string, idade: string, contato: string, crm: string, email: string, senha: string, confirmarSenha: string, tipoUsuario: string) {
+  cadastrarUsuario(nome: string, cpf: string, idade: string, crm: string, contato: string, email: string, senha: string, confirmarSenha: string, tipoUsuario: string) {
     const usuario: Usuarios = {
       nome: nome,
       cpf: cpf,

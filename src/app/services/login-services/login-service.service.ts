@@ -1,6 +1,6 @@
 import { Login } from "src/app/models/login";
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
-import { retry, catchError, filter } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
+import { retry, catchError } from 'rxjs/operators';
 import { Subject, Observable, throwError } from "rxjs";
 import { Injectable } from '@angular/core';
 
