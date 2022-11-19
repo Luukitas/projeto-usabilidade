@@ -15,6 +15,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { DetalheConsultaComponent } from './components/consulta/detalhe-consulta/detalhe-consulta.component';
 import { EditaConsultaComponent } from './components/consulta/edita-consulta/edita-consulta.component';
@@ -44,6 +45,7 @@ import { MenuComponent } from './components/menu/menu.component';
     MatInputModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatSelectModule
   ],
