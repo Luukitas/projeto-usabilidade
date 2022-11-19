@@ -1,32 +1,38 @@
 <div class="row">
-    <div class="col-12">
-        <h1 class="display-6">Agendar consulta</h1>
+    <div class="col-2 d-flex justify-content-end align-items-center mb-5">
+        <a routerLink="/painel-inicial" class="h5 fonte-padrao botao-voltar"><i class="bi bi-arrow-90deg-left"></i> Voltar</a>
     </div>
+    <div class="col-10 d-flex justify-content-center align-items-center mb-5">
+        <p style="margin-left: -18%;" class="display-6 fonte-padrao">Editar consulta</p>
+    </div>
+    <!-- <div class="col-12">
+        <h1 class="display-6">Agendar consulta</h1>
+    </div> -->
     <div class="col-3"></div>
     <div class="col-6">
         <form action="">
             <div class="mb-3">
-                <label class="form-label" for="nome">Nome do paciente:</label>
-                <input class="form-control" [(ngModel)]="this.valorNome" type="text" name="Nome" id="nome">
+                <label class="form-label fonte-padrao" for="nome">Nome do paciente:</label>
+                <input class="form-control fonte-padrao" [(ngModel)]="this.valorNome" type="text" name="Nome" id="nome">
             </div>
             <div class="mb-3">
-                <label class="form-label" for="nome">CPF:</label>
-                <input class="form-control" type="text" [(ngModel)]="this.valorCpf" (keypress)="this.formatarCpf()" maxlength="14" name="cpf" id="cpf">
+                <label class="form-label fonte-padrao" for="nome">CPF:</label>
+                <input class="form-control fonte-padrao" type="text" [(ngModel)]="this.valorCpf" (keypress)="this.formatarCpf()" maxlength="14" name="cpf" id="cpf">
             </div>
             <div class="mb-3">
-                <label class="form-label" for="nome">E-mail:</label>
-                <input class="form-control" [(ngModel)]="this.valorEmail" type="email" name="email" id="email">
+                <label class="form-label fonte-padrao" for="nome">E-mail:</label>
+                <input class="form-control fonte-padrao" [(ngModel)]="this.valorEmail" type="email" name="email" id="email">
             </div>
             <div class="mb-3">
-                <label class="form-label" for="data">Data do agendamento:</label>
-                <input class="form-control" [(ngModel)]="this.valorData" type="date" name="Data" id="data">
+                <label class="form-label fonte-padrao" for="data">Data do agendamento:</label>
+                <input class="form-control fonte-padrao" [(ngModel)]="this.valorData" type="date" name="Data" id="data">
             </div>
             <div class="mb-3">
-                <label class="form-label" for="descricao">Descrição: (opcional)</label>
+                <label class="form-label fonte-padrao" for="descricao">Descrição: (opcional)</label>
                 <br>
-                <textarea class="form-control" [(ngModel)]="this.valorDescricao" name="descricao" id="descricao" cols="30" rows="6"></textarea>
+                <textarea class="form-control fonte-padrao" [(ngModel)]="this.valorDescricao" name="descricao" id="descricao" cols="30" rows="6"></textarea>
             </div>
-            <button class="btn btn-primary" (click)="this.cadastrarAgendamento()">Editar consulta</button>
+            <button class="btn btn-primary fonte-padrao" (click)="this.cadastrarAgendamento()">Editar consulta</button>
         </form>
     </div>
     <div class="col-3"></div>

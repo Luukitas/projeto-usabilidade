@@ -1,17 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container ">
-    <a href="" class="navbar-brand">
-      Logo
-    </a>
-    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">{{textoBotao}}</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<app-menu *ngIf="this.mostrarMenu"></app-menu>
 
 <div class="container">
   <div class="row">

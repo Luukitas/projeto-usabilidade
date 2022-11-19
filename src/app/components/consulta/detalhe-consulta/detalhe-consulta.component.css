@@ -1,0 +1,29 @@
+body, input, h4, h5, h6, label, p, a, button{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.h4, .h5{
+    font-weight: 750;
+}
+
+.botao-cadastro{
+    /* background-color: rgba(238, 108, 77, 1); */
+    background-color: rgba(61, 90, 128, 1);
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+
+.botao-cadastro:hover{
+    background-color: rgb(93, 112, 145);
+    border-color: rgb(93, 112, 145);
+}
+
+.botao-voltar{
+    color: rgba(238, 108, 77, 1);
+    font-weight: 800 !important;
+    text-decoration: none;
+}
+
+.botao-voltar:hover{
+    color: rgb(182, 84, 59);
+}

@@ -26,7 +26,7 @@ export class DetalheConsultaComponent implements OnInit {
 
   pesquisarConsulta = (entrada: any) => {
     this.consultaService.getConsulta(entrada).subscribe((data: Consultas[]) =>{
-      this.consulta = data;
+      this.consulta = data[0];
       console.log(this.consulta);
       
     });
@@ -34,7 +34,7 @@ export class DetalheConsultaComponent implements OnInit {
 
   cancelarConsuta = (entrada: any) => {
     this.consultaService.deleteConsulta(entrada).subscribe(() =>{});
-    this.router.navigate([''])
+    this.router.navigate(['/painel-inicial'])
   }
 
 }

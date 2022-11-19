@@ -1,6 +1,6 @@
 <div class="painel-inicial">
 
-    <h2 class="fonte-padrao fw-bold">Bem Vindo, {{nomeUsuario}}</h2>
+    <h2 class="fonte-padrao fw-bold">Bem Vindo, {{this.usuarioSelecionado.nome}}</h2>
     
     <div class="row">
         <div class="col-12 col-md-6 card">
@@ -10,7 +10,7 @@
                 </h5>
                 <div class="painel-agendamento d-flex justify-content-center">
                     <mat-card class="demo-inline-calendar-card calendario">
-                        <mat-calendar [(selected)]="selected" [minDate]="minDate" (selectedChange)="this.pesquisarConsulta(this.dataHoje)"></mat-calendar>
+                        <mat-calendar [(selected)]="selected" [minDate]="this.dataHoje" (selectedChange)="this.pesquisarConsulta(this.dataHoje)"></mat-calendar>
                     </mat-card>
                 </div>
                 <ul *ngIf="!this.mostrarVazio" class="list-group list-group-flush mt-2">
@@ -19,8 +19,8 @@
                         <strong class="mr-4">Ação</strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let consulta of consultas">
-                        {{consulta.nome}}
-                        <button class="btn btn-outline-secondary" [routerLink]="['/detalhe-consulta', consulta._id]">Consultar</button>
+                        <p>{{consulta.paciente.nome}}</p>
+                        <button class="btn btn-outline-secondary" [routerLink]="['/detalhe-consulta', consulta._id]">Saiba mais</button>
                     </li>
                 </ul>
                 <ul *ngIf="this.mostrarVazio" class="list-group list-group-flush mt-2">
@@ -29,14 +29,28 @@
                         <strong class="mr-4">Ação</strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-center align-items-center bg-light">
-                        Nenhuma consulta agendada
+                        <strong>Nenhuma consulta agendada</strong>
                     </li>
                 </ul>
             </div>
         </div> 
         
-        <div class="col-12 col-md-6 ">
-            <button routerLink="/cadastro-consulta" class="btn btn-outline-primary">Agendar consulta</button>
+        <div class="col-12 col-md-6 d-flex flex-column">
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <button routerLink="/cadastro-consulta" class="btn btn-outline-primary botao-cadastro"> <span class=" fonte-padrao"><i class="bi bi-calendar-date"></i> Agendar consulta</span> </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <button routerLink="/cadastro-consulta" class="btn btn-outline-success botao-cadastro"> <span class=" fonte-padrao"><i class="bi bi-clipboard-plus-fill"></i> Cadastrar paciente</span> </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <button routerLink="/cadastro-consulta" class="btn btn-outline-info botao-cadastro"> <span class=" fonte-padrao"><i class="bi bi-clipboard-check-fill"></i> Editar paciente</span> </button>
+                </div>
+            </div>
         </div> 
     </div>
 </div>

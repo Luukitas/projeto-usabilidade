@@ -1,3 +1,7 @@
+body, input, h4, h5, h6, label, p, a{
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 mat-card {
   width: 60%;
   margin: auto;

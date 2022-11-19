@@ -1,4 +1,4 @@
-<section class="row">
+<section class="row login d-flex justify-content-center align-items-center">
   <section style="max-width: 300px; margin: auto;">
     <section *ngIf="this.deuErro" class="alert alert-danger d-flex align-items-center" role="alert">
       <i class="bi bi-exclamation-circle-fill"></i>
@@ -7,22 +7,22 @@
       </section>
     </section>
     <form>
-    <section class="text-center">
-    <img src="https://img.freepik.com/free-vector/cartoon-doctors-nurses_52683-59918.jpg?
+      <section class="text-center">
+        <img src="https://img.freepik.com/free-vector/cartoon-doctors-nurses_52683-59918.jpg?
     w=740&t=st=1667659934~exp=1667660534~hmac=f4ba35b88927a1547887275d9746b69bbbddad00afc
     783650a17ff86ac52ef92" height="200" alt="Projeto Logo">
-    </section>
+      </section>
       <h1 class="text-center mt-3">Login</h1>
       <label class="sr-only" for="emailAddress"></label>
-      <input required type="email" class="form-control mb-3"
-      placeholder="Endereço de e-mail" id="emailAddress" name="email" [(ngModel)]="this.valorEmail">
+      <input required type="email" class="form-control mb-3" placeholder="Endereço de e-mail" id="emailAddress"
+        name="email" [(ngModel)]="this.valorEmail">
       <label class="sr-only mb-1" for="password"></label>
-      <input required type="password" class="form-control"
-      placeholder="Insira sua senha" id="password" name="senha" [(ngModel)]="this.valorSenha">
+      <input required type="password" class="form-control" placeholder="Insira sua senha" id="password" name="senha"
+        [(ngModel)]="this.valorSenha">
       <section class="text-center mt-4">
-      <button (click)="fazerLogin()" type="button" class="btn btn-lg btn-primary mb-3">Fazer login</button>
-    </section>
+        <button (click)="fazerLogin()" type="button" class="btn btn-lg btn-primary mb-3">Fazer login</button>
+      </section>
     </form>
     <p class="text-center">Não tem uma conta? <a data-toggle="tab" [href]="['cadastro-usuario']">Registrar-se</a></p>
   </section>
-  </section>
+</section>

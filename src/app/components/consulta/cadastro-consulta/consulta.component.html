@@ -1,22 +1,89 @@
 <div class="row">
-    <div class="col-12">
-        <h1 class="display-6">Agendar consulta</h1>
+
+    <div class="col-2 d-flex justify-content-end align-items-center mb-5">
+        <a routerLink="/painel-inicial" class="h5 fonte-padrao botao-voltar"><i class="bi bi-arrow-90deg-left"></i> Voltar</a>
     </div>
+    <div class="col-10 d-flex justify-content-center align-items-center mb-5">
+        <p style="margin-left: -18%;" class="display-6 fonte-padrao">Agendar consulta</p>
+    </div>
+
     <div class="col-3"></div>
     <div class="col-6">
         <form action="">
-            <div class="mb-3">
-                <label class="form-label" for="nome">Nome do paciente:</label>
-                <input class="form-control" [(ngModel)]="this.valorNome" type="text" name="Nome" id="nome">
+
+            <div>
+                <label class="form-label" for="nome">Buscar paciente:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" [(ngModel)]="this.valorNomePaciente" type="text" name="Nome" id="nome">
+                    <button class="btn btn-outline-secondary" type="button" (click)="this.buscarPaciente()" id="button-addon2">Buscar</button>
+                </div>
+                <table *ngIf="this.mostrarBuscaPacientes" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">E-MAIL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let paciente of this.listaPacientes">
+                        <th scope="row"><input type="radio" name="radioPaciente" id="radioPaciente" (click)="this.selecionar(1, paciente)"></th>
+                        <td>{{paciente.nome}}</td>
+                        <td>{{paciente.cpf}}</td>
+                        <td>{{paciente.email}}</td>
+                      </tr>
+                      <tr *ngIf="this.listaPacientes.length === 0">
+                        <td colspan="4">
+                            <p>Nenhum paciente encontrado</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="nome">CPF:</label>
-                <input class="form-control" type="text" [(ngModel)]="this.valorCpf" (keypress)="this.formatarCpf()" maxlength="14" name="cpf" id="cpf">
+
+
+            <div *ngIf="this.pacienteSelecionado">
+                <label for="nomePaciente">Nome do paciente:</label>
+                <p class="lead"><strong>{{this.pacienteSelecionado.nome}}</strong></p>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="nome">E-mail:</label>
-                <input class="form-control" [(ngModel)]="this.valorEmail" type="email" name="email" id="email">
+
+            <div *ngIf="this.verificadorUsuario !== 0">
+                <label class="form-label" for="nome">Nome do médico:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" [(ngModel)]="this.valorNomeMedico" type="text" name="Nome" id="nome">
+                    <button class="btn btn-outline-secondary" type="button" (click)="this.buscarMedico()" id="button-addon2">Buscar</button>
+                </div>
+                <table *ngIf="this.mostrarBuscaMedicos" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">E-MAIL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let medico of this.listaMedicos">
+                        <th scope="row"><input type="radio" name="radioPaciente" id="radioPaciente" (click)="this.selecionar(2, medico)"></th>
+                        <td>{{medico.nome}}</td>
+                        <td>{{medico.cpf}}</td>
+                        <td>{{medico.email}}</td>
+                      </tr>
+                      <tr *ngIf="this.listaMedicos.length === 0">
+                        <td colspan="4">
+                            <p>Nenhum paciente encontrado</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
+
+            <div *ngIf="this.medicoSelecionado ">
+                <label for="nomeMedico">Nome do médico</label>
+                <p class="lead"><strong>{{this.medicoSelecionado.nome}}</strong></p>
+            </div>
+
             <div class="mb-3">
                 <label class="form-label" for="data">Data do agendamento:</label>
                 <input class="form-control" [(ngModel)]="this.valorData" type="date" name="Data" id="data">

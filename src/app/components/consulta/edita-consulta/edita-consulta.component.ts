@@ -11,7 +11,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class EditaConsultaComponent implements OnInit {
 
-  constructor(public datepipe: DatePipe, private consultaService: ConsultaService, private route: ActivatedRoute) { }
+  constructor(public datepipe: DatePipe, private consultaService: ConsultaService, private route: ActivatedRoute, private router: Router) { }
 
   valorNome: string = "";
   valorCpf:string = "";
@@ -55,11 +55,8 @@ export class EditaConsultaComponent implements OnInit {
       "descricao": this.valorDescricao
     }
 
-    this.consultaService.editarConsulta(this.id, this.consulta).subscribe((response) => {
-      console.log(response);
-      console.log();
-      
-    })
+    this.consultaService.editarConsulta(this.id, this.consulta).subscribe((response) => {})
+    this.router.navigate(['/painel-inicial'])
 
     
   }

@@ -1,4 +1,7 @@
-input {
-  border-bottom-left-radius: 0px;;
-  border-bottom-right-radius: 0px;;
+body, input, h4, h5, h6, h1, label, p, a, button{
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.login{
+  height: 100vh;
 }

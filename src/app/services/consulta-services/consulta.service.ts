@@ -20,7 +20,7 @@ export class ConsultaService {
   salvarConsulta = (consulta:Consultas) => {
     return this.httpClient.post<Consultas>(this.url, JSON.stringify(consulta), this.httpOptions)
       .pipe(
-        retry(2),
+        retry(0),
         catchError(this.handleError)
       )
   }

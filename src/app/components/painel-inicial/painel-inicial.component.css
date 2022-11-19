@@ -1,4 +1,4 @@
-body{
+body, input, h4, h5, h6, label, p, a, strong{
     font-family: 'Montserrat', sans-serif !important;
 }
 
@@ -26,3 +26,19 @@ body{
     padding: 0;
 }
 
+
+.botao-cadastro{
+    border-color: rgba(238, 108, 77, 1);
+    color: rgba(238, 108, 77, 1);
+    margin: 10px;
+    padding: 25px 65px;
+    font-size: 25px;
+    font-weight: 650;
+    width: 65%;
+}
+
+.botao-cadastro:hover{
+    background-color: rgba(238, 108, 77, 1);
+    border-color: rgba(41, 50, 65, 1);
+    color: rgba(41, 50, 65, 1);
+}

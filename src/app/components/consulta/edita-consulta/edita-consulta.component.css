@@ -1,0 +1,13 @@
+body, input, h4, h5, h6, label, p, a, button{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.botao-voltar{
+    color: rgba(238, 108, 77, 1);
+    font-weight: 800 !important;
+    text-decoration: none;
+}
+
+.botao-voltar:hover{
+    color: rgb(182, 84, 59);
+}

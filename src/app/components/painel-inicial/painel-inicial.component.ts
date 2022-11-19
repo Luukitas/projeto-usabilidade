@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PainelInicialService } from "../../services/painel-inicial-services/painel-inicial.service";
 import { Consultas } from "../../models/consultas";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-painel-inicial',
@@ -9,9 +12,9 @@ import { Consultas } from "../../models/consultas";
 })
 export class PainelInicialComponent implements OnInit {
 
-  constructor(private painelInicialService: PainelInicialService) { }
+  constructor(private painelInicialService: PainelInicialService, private route: ActivatedRoute, private router: Router) { }
 
-  nomeUsuario: String = "Lucas"
+  usuarioSelecionado: any;
 
   consultas!: Consultas[];
   mostrarVazio?:boolean;
@@ -25,6 +28,9 @@ export class PainelInicialComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.usuarioSelecionado = environment.login;
+    console.log(this.usuarioSelecionado);
+    
     this.selected = new Date();
     this.pesquisarConsulta(this.dataHoje);
     
@@ -45,7 +51,6 @@ export class PainelInicialComponent implements OnInit {
       }else{
         this.mostrarVazio = false;
       }
-      console.log(this.consultas);
     });
   }
 

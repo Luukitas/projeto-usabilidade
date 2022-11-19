@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Consultas } from 'src/app/models/consultas';
 import { ConsultaService } from 'src/app/services/consulta-services/consulta.service';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { environment } from 'src/environments/environment';
+import { LoginService } from 'src/app/services/login-services/login-service.service';
+import { Usuarios } from 'src/app/models/usuarios';
+import { UsuarioService } from 'src/app/services/usuarios-services/usuarios.service';
 
 @Component({
   selector: 'app-consulta',
@@ -11,25 +14,33 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 })
 export class ConsultaComponent implements OnInit {
 
-  constructor(public datepipe: DatePipe, private consultaService: ConsultaService) { }
+  constructor(public datepipe: DatePipe, private consultaService: ConsultaService, private usuarioService: UsuarioService) { }
 
-  valorNome: string = "";
-  valorCpf:string = "";
-  valorEmail:string = "";
+  valorNomePaciente: string = "";
+  valorNomeMedico: string = "";
   valorData:any;
   valorDescricao: string = ""
+
+  verificadorUsuario: any;
+  pacienteSelecionado: any;
+  medicoSelecionado: any;
+  usuarioSelecionado!:Usuarios;
+  mostrarBuscaPacientes: boolean = false;
+  mostrarBuscaMedicos: boolean = false;
+
+  listaPacientes!: Usuarios[]
+  listaMedicos!: Usuarios[]
   
   consulta!: Consultas;
   
   ngOnInit(): void {
-  }
-
-  formatarCpf = () => {
-    if (this.valorCpf.length === 3 || this.valorCpf.length === 7) {
-      this.valorCpf = this.valorCpf + "."
-    }if (this.valorCpf.length === 11) {
-      this.valorCpf = this.valorCpf + "-"
+    this.usuarioSelecionado = environment.login;
+    this.verificadorUsuario = this.usuarioSelecionado.tipoUsuario;
+    if (this.verificadorUsuario === 2) {
+      this.medicoSelecionado = this.usuarioSelecionado
     }
+    console.log(this.usuarioSelecionado);
+    
   }
 
   mostrarValorData = () => {
@@ -40,17 +51,51 @@ export class ConsultaComponent implements OnInit {
   cadastrarAgendamento = () => {
     let data = this.mostrarValorData();
     this.consulta = {
-      "nome": this.valorNome,
-      "email":this.valorEmail,
+      "paciente": this.pacienteSelecionado,
+      "medico":this.medicoSelecionado,
       "data": data,
-      "cpf": this.valorCpf,
       "descricao": this.valorDescricao
     }
-
+    
     this.consultaService.salvarConsulta(this.consulta).subscribe((response) => {
+
       console.log(response);
     })
     
+  }
+
+  selecionar = (variavel:any, paciente: any) => {
+    if (variavel === 1) {
+      this.pacienteSelecionado = paciente
+    }else{
+      this.medicoSelecionado = paciente
+    }
+  }
+
+  buscarPaciente = () => {
+    let entrada = {
+      "nome": this.valorNomePaciente,
+      "tipoUsuario": 2
+    }
+    
+    this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
+       this.listaPacientes = data;
+       this.mostrarBuscaPacientes = true;
+       console.log(this.listaPacientes);
+       
+      });
+  }
+
+  buscarMedico = () => {
+    let entrada = {
+      "nome": this.valorNomeMedico,
+      "tipoUsuario": 0
+    }
+    
+    this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
+       this.listaMedicos = data;
+       this.mostrarBuscaMedicos = true;
+      });
   }
 
 }

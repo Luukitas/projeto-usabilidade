@@ -1,36 +1,59 @@
 <div class="row">
-    <div class="col-1 d-flex justify-content-end align-items-center mb-5">
-        <a routerLink="/" class="text-secondary h6"><i class="bi bi-chevron-left"></i>voltar</a>
+    <div class="col-2 d-flex justify-content-end align-items-center mb-5">
+        <a routerLink="/painel-inicial" class="h5 fonte-padrao botao-voltar"><i class="bi bi-arrow-90deg-left"></i> Voltar</a>
     </div>
-    <div class="col-11 d-flex justify-content-center align-items-center mb-5">
-        <p class="display-6">Detalhe da consulta</p>
+    <div class="col-10 d-flex justify-content-center align-items-center mb-5">
+        <p style="margin-left: -18%;" class="display-6 fonte-padrao">Detalhe da consulta</p>
     </div>
-    <div class="col-3"></div>
-    <div class="col-6">
-        <div class="row">
-            <div class="col-12 mb-4">
-                <p class="lead mb-1" style="font-size: 18px;">Nome do paciente</p>
-                <p class="h4 m-0">{{this.consulta.nome}}</p>
-            </div>
-            <div class="col-12 mb-4">
-                <p class="lead mb-1" style="font-size: 18px;">Data da Consulta</p>
-                <p class="h4 m-0">{{this.consulta.data}}</p>
-            </div>
-            <div class="col-12 mb-4">
-                <p class="lead mb-1" style="font-size: 18px;">E-mail do paciente</p>
-                <p class="h4 m-0">{{this.consulta.email}}</p>
-            </div>
-            <div class="col-12 mb-4">
-                <p class="lead mb-1" style="font-size: 18px;">Descrição</p>
-                <p class="h4 m-0">{{this.consulta.descricao}}</p>
-            </div>
+    <main class="col-3"></main>
+    <main class="col-6">
+        <section class="row">
+            <section class="col-12 mb-4">
+                <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Nome do paciente</p>
+                <p class="h4 m-0 fonte-padrao">{{this.consulta.nome}}</p>
+            </section>
+            <section class="col-12 mb-4">
+                <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Data da Consulta</p>
+                <p class="h4 m-0 fonte-padrao">{{this.consulta.data}}</p>
+            </section>
+            <section class="col-12 mb-4">
+                <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">E-mail do paciente</p>
+                <p class="h4 m-0 fonte-padrao">{{this.consulta.email}}</p>
+            </section>
+            <section class="col-12 mb-4">
+                <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Descrição</p>
+                <p class="h4 m-0 fonte-padrao">{{this.consulta.descricao}}</p>
+            </section>
 
-            <div class="col-12 mb-4">
-                <button type="button" (click)="this.cancelarConsuta(this.entrada);" class="btn btn-outline-danger mr-3">Cancelar Consulta</button>
-                <button type="button" [routerLink]="['/editar-consulta', this.consulta._id]" class="btn btn-primary m-3">Editar Consulta</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-3"></div>
+            <section class="d-flex justify-content-end col-12 mb-4">
+                <section class="row">
+                    <section class="col-12">
+                        <button type="button" class="btn btn-outline-danger mr-3 fonte-padrao" data-bs-toggle="modal" data-bs-target="#modalCancelar">Cancelar Consulta</button>
+                        <button type="button" [routerLink]="['/editar-consulta', this.consulta._id]" class="btn btn-primary botao-cadastro m-3 fonte-padrao">Editar Consulta</button>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </main>
+    <main class="col-3"></main>
 </div>
 
+  <!-- Modal -->
+<div class="modal fade" id="modalCancelar" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalCancelar" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Cancelar consulta</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Você está cancelando a consulta. Depois disso, você não poderá mais visualizar e editar o registro.</p>
+          <strong>Deseja continuar?</strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-danger" (click)="this.cancelarConsuta(this.entrada);">Cancelar consulta</button>
+        </div>
+      </div>
+    </div>
+</div>

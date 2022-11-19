@@ -20,6 +20,7 @@ import { DetalheConsultaComponent } from './components/consulta/detalhe-consulta
 import { EditaConsultaComponent } from './components/consulta/edita-consulta/edita-consulta.component';
 import { CadastroUsuarioComponent } from 'src/app/components/usuarios/cadastro-usuario/cadastro-usuario.component';
 import { LoginUsuarioComponent } from './components/usuarios/login/login-usuario/login-usuario.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoginUsuarioComponent } from './components/usuarios/login/login-usuario
     DetalheConsultaComponent,
     EditaConsultaComponent,
     CadastroUsuarioComponent,
-    LoginUsuarioComponent
+    LoginUsuarioComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,7 @@
 export interface Consultas {
     _id?: any, // Assim ele fica como opcional
-    cpf: string,
-    email: string,
-    nome: string,
+    paciente: any,
+    medico: any,
     data: any,
     descricao: string
 }
