@@ -1,4 +1,4 @@
-<h1>Front-end</h1> <br />
+<h1>Front-end</h1>
 
 <h2>Integrantes do grupo:</h2>
 Fernando Hideyoshi Yonamine Fusada - 820148604; <br />
