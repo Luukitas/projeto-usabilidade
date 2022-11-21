@@ -7,6 +7,6 @@ export interface Usuarios {
   senha?: string,
   confirmarSenha?: string,
   crm?: any,
-  tipoUsuario?: Number,
+  tipoUsuario?: string,
   id?: any
 }

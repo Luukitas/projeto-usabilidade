@@ -3,9 +3,9 @@ import { DatePipe } from '@angular/common';
 import { Consultas } from 'src/app/models/consultas';
 import { ConsultaService } from 'src/app/services/consulta-services/consulta.service';
 import { environment } from 'src/environments/environment';
-import { LoginService } from 'src/app/services/login-services/login-service.service';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuarios-services/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta',
@@ -14,7 +14,7 @@ import { UsuarioService } from 'src/app/services/usuarios-services/usuarios.serv
 })
 export class ConsultaComponent implements OnInit {
 
-  constructor(public datepipe: DatePipe, private consultaService: ConsultaService, private usuarioService: UsuarioService) { }
+  constructor(public datepipe: DatePipe, private consultaService: ConsultaService, private usuarioService: UsuarioService, private router: Router) { }
 
   valorNomePaciente: string = "";
   valorNomeMedico: string = "";
@@ -30,16 +30,20 @@ export class ConsultaComponent implements OnInit {
 
   listaPacientes!: Usuarios[]
   listaMedicos!: Usuarios[]
+
+  deuErro = {
+    verificador: false,
+    mansagem: ""
+  }
   
   consulta!: Consultas;
   
   ngOnInit(): void {
     this.usuarioSelecionado = environment.login;
     this.verificadorUsuario = this.usuarioSelecionado.tipoUsuario;
-    if (this.verificadorUsuario === 2) {
+    if (this.verificadorUsuario === "0") {
       this.medicoSelecionado = this.usuarioSelecionado
     }
-    console.log(this.usuarioSelecionado);
     
   }
 
@@ -49,18 +53,20 @@ export class ConsultaComponent implements OnInit {
   }
 
   cadastrarAgendamento = () => {
-    let data = this.mostrarValorData();
-    this.consulta = {
-      "paciente": this.pacienteSelecionado,
-      "medico":this.medicoSelecionado,
-      "data": data,
-      "descricao": this.valorDescricao
-    }
-    
-    this.consultaService.salvarConsulta(this.consulta).subscribe((response) => {
+    this.deuErro.verificador = false;
+    this.deuErro.mansagem = ""
 
-      console.log(response);
-    })
+    if (!this.verificarCamposVazios()) {
+      let data = this.mostrarValorData();
+      this.consulta = {
+        "paciente": JSON.stringify(this.pacienteSelecionado),
+        "medico":JSON.stringify(this.medicoSelecionado),
+        "data": data,
+        "descricao": this.valorDescricao
+      }
+      this.consultaService.salvarConsulta(this.consulta).subscribe((response) => {})
+      this.router.navigate(['/painel-inicial'])
+    }
     
   }
 
@@ -75,7 +81,7 @@ export class ConsultaComponent implements OnInit {
   buscarPaciente = () => {
     let entrada = {
       "nome": this.valorNomePaciente,
-      "tipoUsuario": 2
+      "tipoUsuario": "2"
     }
     
     this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
@@ -89,13 +95,36 @@ export class ConsultaComponent implements OnInit {
   buscarMedico = () => {
     let entrada = {
       "nome": this.valorNomeMedico,
-      "tipoUsuario": 0
+      "tipoUsuario": "0"
     }
     
     this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
        this.listaMedicos = data;
        this.mostrarBuscaMedicos = true;
       });
+  }
+
+  verificarCamposVazios = () => {
+    if (this.pacienteSelecionado === null || this.pacienteSelecionado === undefined) {
+      this.deuErro.verificador = true;
+      this.deuErro.mansagem = "O campo paciente é obrigatório. Por favor, insira um paciente"
+    }
+    else if (this.medicoSelecionado === null || this.medicoSelecionado === undefined) {
+      this.deuErro.verificador = true;
+      this.deuErro.mansagem = "O campo médico é obrigatório. Por favor, insira um médico"
+    }
+    else if (this.valorData === "" || this.valorData === undefined) {
+      this.deuErro.verificador = true;
+      this.deuErro.mansagem = "O campo Data do Agendamento é obrigatório. Por favor, insira uma data para consulta"
+    }
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+
+    return this.deuErro.verificador
   }
 
 }

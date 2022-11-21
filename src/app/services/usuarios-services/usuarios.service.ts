@@ -16,7 +16,7 @@ export class UsuarioService {
 
   constructor(private httpClient: HttpClient) { }
 
-  cadastrarUsuario(nome: string, cpf: string, idade: string, crm: string, contato: string, email: string, senha: string, confirmarSenha: string, tipoUsuario: Number) {
+  cadastrarUsuario(nome: string, cpf: string, idade: string, crm: string, contato: string, email: string, senha: string, confirmarSenha: string, tipoUsuario: string) {
     const usuario: Usuarios = {
       nome: nome,
       cpf: cpf,
@@ -51,6 +51,22 @@ export class UsuarioService {
 
   getListaDeUsuariosAtualizadaObservable() {
     return this.listaUsuariosAtualizada.asObservable();
+  }
+
+
+  editarUsuario(id: any, entrada: Usuarios): Observable<Usuarios[]> {
+    const params = new HttpParams({
+      fromObject: entrada as any
+    })
+
+    console.log(this.url + '/' + id);
+    
+    
+    return this.httpClient.put<Usuarios[]>(this.url + '/' + id, JSON.stringify(entrada), {params: params})
+    .pipe(
+      retry(0),
+      catchError(this.handleError)
+      );
   }
 
 

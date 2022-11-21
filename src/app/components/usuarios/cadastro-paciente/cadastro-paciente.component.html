@@ -1,0 +1,96 @@
+<div class="row mb-5">
+
+    <div *ngIf="this.deuErro.verificador" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+      <i class="bi bi-exclamation-circle-fill" style="margin-right: 5px;"></i>
+      <div>
+           {{this.deuErro.mansagem}}
+      </div>
+    </div>
+  
+      <div class="col-2 d-flex justify-content-end align-items-center mb-5">
+          <a routerLink="/painel-inicial" class="h5 fonte-padrao botao-voltar"><i class="bi bi-arrow-90deg-left"></i> Voltar</a>
+      </div>
+      <div class="col-10 d-flex justify-content-center align-items-center mb-5">
+          <p style="margin-left: -18%;" class="display-6 fonte-padrao">{{this.textoCabecalho}}</p>
+      </div>
+  
+      <div class="col-2"></div>
+      <div class="col-8">
+          <form action="">
+  
+            <div *ngIf="this.veioEditar" class="card p-3 mb-3">
+              <h1 class="card-title">
+                Buscar paciente
+              </h1>
+  
+              <div>
+                <label class="form-label" for="nome">Nome do paciente:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control inputs" [(ngModel)]="this.valorNomePaciente" placeholder="ex: Oswaldo Cruz" type="text" name="Nome" id="nome">
+                    <button class="btn btn-outline-secondary" type="button" (click)="this.buscarPaciente()" id="button-addon2">Buscar</button>
+                </div>
+                <table *ngIf="this.mostrarBuscaPacientes" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">E-MAIL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let paciente of this.listaPacientes">
+                        <th scope="row"><input type="radio" name="radioPaciente" id="radioPaciente" (click)="this.selecionar(1, paciente)"></th>
+                        <td>{{paciente.nome}}</td>
+                        <td>{{paciente.cpf}}</td>
+                        <td>{{paciente.email}}</td>
+                      </tr>
+                      <tr *ngIf="this.listaPacientes.length === 0">
+                        <td colspan="4">
+                            <p>Nenhum paciente encontrado</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+  
+            </div>
+
+
+            <div *ngIf="!this.veioEditar || this.pacienteEncontrado ">
+              <div class="mb-3">
+                  <label class="form-label fonte-padrao" for="nome">Nome do paciente:</label>
+                  <input class="form-control inputs fonte-padrao" placeholder="ex: Adriana Suely de Oliveira Melo" [(ngModel)]="this.pacienteSelecionado.nome" type="text" name="nome" id="nome">
+              </div>
+  
+              <div class="mb-3">
+                  <label class="form-label fonte-padrao" for="cpf">CPF:</label>
+                  <input class="form-control inputs fonte-padrao" maxlength="14" placeholder="ex: 000.000.000-00" [(ngModel)]="this.pacienteSelecionado.cpf" (keypress)="this.formatarCpf()" type="text" name="cpf" id="cpf">
+              </div>
+  
+              <div class="mb-3">
+                  <label class="form-label fonte-padrao" for="idade">Idade:</label>
+                  <input class="form-control inputs fonte-padrao" maxlength="3" placeholder="Digite a idade do paciente" [(ngModel)]="this.pacienteSelecionado.idade" type="text" name="idade" id="idade">
+              </div>
+  
+              <div class="mb-3">
+                  <label class="form-label fonte-padrao" for="email">E-mail:</label>
+                  <input class="form-control inputs fonte-padrao" [(ngModel)]="this.pacienteSelecionado.email"  placeholder="ex: exemplo@gmail.com" type="email" name="email" id="email">
+              </div>
+            </div>
+
+
+
+           <section class="d-flex justify-content-end col-12 mb-4">
+                <section class="row">
+                    <section class="col-12">
+                      <button class="btn botao-primario" [disabled]="!this.pacienteSelecionado" (click)="this.cadastrarUsuario()">{{this.textoBotao}}</button>
+                    </section>
+                </section>
+            </section>
+  
+          </form>
+      </div>
+      <div class="col-2"></div>
+  </div>
+  

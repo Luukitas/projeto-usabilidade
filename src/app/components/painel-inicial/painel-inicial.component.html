@@ -43,12 +43,12 @@
             </div>
             <div class="row">
                 <div class="col-12 d-flex align-items-center justify-content-center">
-                    <button routerLink="/cadastro-consulta" class="btn btn-outline-success botao-cadastro"> <span class=" fonte-padrao"><i class="bi bi-clipboard-plus-fill"></i> Cadastrar paciente</span> </button>
+                    <button routerLink="/cadastro-paciente" class="btn btn-outline-success botao-cadastro"> <span class=" fonte-padrao"><i class="bi bi-clipboard-plus-fill"></i> Cadastrar paciente</span> </button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 d-flex align-items-center justify-content-center">
-                    <button routerLink="/cadastro-consulta" class="btn btn-outline-info botao-cadastro"> <span class=" fonte-padrao"><i class="bi bi-clipboard-check-fill"></i> Editar paciente</span> </button>
+                    <button [routerLink]="['/cadastro-paciente', true]" class="btn btn-outline-info botao-cadastro"> <span class=" fonte-padrao"><i class="bi bi-clipboard-check-fill"></i> Editar paciente</span> </button>
                 </div>
             </div>
         </div> 

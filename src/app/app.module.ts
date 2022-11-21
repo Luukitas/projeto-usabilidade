@@ -22,6 +22,7 @@ import { EditaConsultaComponent } from './components/consulta/edita-consulta/edi
 import { CadastroUsuarioComponent } from 'src/app/components/usuarios/cadastro-usuario/cadastro-usuario.component';
 import { LoginUsuarioComponent } from './components/usuarios/login/login-usuario/login-usuario.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { CadastroPacienteComponent } from './components/usuarios/cadastro-paciente/cadastro-paciente.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MenuComponent } from './components/menu/menu.component';
     EditaConsultaComponent,
     CadastroUsuarioComponent,
     LoginUsuarioComponent,
-    MenuComponent
+    MenuComponent,
+    CadastroPacienteComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,12 @@ export class CadastroUsuarioComponent implements OnInit {
   form!: FormGroup;
   erroSenha = false;
 
+
+  deuErro = {
+    verificador: false,
+    mansagem: ""
+  }
+
   usuario!: Usuarios;
 
   usuarios: Usuario[] = [
@@ -103,28 +109,82 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   onCadastrarUsuario() {
-    if(this.form.invalid) {
-      return;
-    }
-    this.usuarioService.cadastrarUsuario(
-      this.form.value.nome,
-      this.form.value.cpf,
-      this.form.value.idade,
-      this.form.value.crm,
-      this.form.value.contato,
-      this.form.value.email,
-      this.form.value.senha,
-      this.form.value.confirmarSenha,
-      this.form.value.tipoUsuario
-      );
-      if(this.form.value.senha === this.form.value.confirmarSenha) {
-        this.form.reset();
-        alert("Usuário cadastrado com sucesso!");
-        this.router.navigate(["login"]);
-      }
-      if(this.form.value.senha !== this.form.value.confirmarSenha) {
-        this.erroSenha = true;
+    this.deuErro.verificador = false;
+    this.deuErro.mansagem = ""
+    if (!this.validarCamposObrigatorios()) {
+      
+      if(this.form.invalid) {
         return;
       }
+      this.usuarioService.cadastrarUsuario(
+        this.form.value.nome,
+        this.form.value.cpf,
+        this.form.value.idade,
+        this.form.value.crm,
+        this.form.value.contato,
+        this.form.value.email,
+        this.form.value.senha,
+        this.form.value.confirmarSenha,
+        this.form.value.tipoUsuario
+        );
+        if(this.form.value.senha === this.form.value.confirmarSenha) {
+          this.form.reset();
+          alert("Usuário cadastrado com sucesso!");
+          this.router.navigate(["login"]);
+        }
+        if(this.form.value.senha !== this.form.value.confirmarSenha) {
+          this.erroSenha = true;
+          return;
+        }
+    }
+  }
+
+  validarCamposObrigatorios = () => {
+    let mensagem = "";
+
+
+    console.log(this.form.value.tipoUsuario);
+    
+
+    if (this.form.value.nome === null || this.form.value.nome === "") {
+      mensagem = "O campo Nome é obrigatório"
+      this.deuErro.verificador = true;
+    }
+    else if (this.form.value.cpf === "" || this.form.value.cpf === "") {
+      mensagem = "O campo CPF é obrigatório"
+      this.deuErro.verificador = true;
+    }
+    else if (this.form.value.idade === null || this.form.value.idade === "") {
+      mensagem = "O campo Idade é obrigatório"
+      this.deuErro.verificador = true;
+    }
+    else if (this.form.value.tipoUsuario === null || this.form.value.tipoUsuario === "") {
+      mensagem = "O Tipo de Usuário é obrigatório"
+      this.deuErro.verificador = true;
+    }
+    else if (this.form.value.contato === null || this.form.value.contato === "") {
+      mensagem = "O campo Contato é obrigatório"
+      this.deuErro.verificador = true;
+    }
+    else if (this.form.value.crm === null || this.form.value.crm === "") {
+      mensagem = "O campo CRM é obrigatório"
+      this.deuErro.verificador = true;
+    }
+    else if (this.form.value.email === null || this.form.value.email === "") {
+      mensagem = "O campo E-mail é obrigatório"
+      this.deuErro.verificador = true;
+    }
+    else if (this.form.value.senha === null || this.form.value.senha === "") {
+      mensagem = "O campo Senha é obrigatório"
+      this.deuErro.verificador = true;
+    }
+    else if (this.form.value.confirmarSenha === null || this.form.value.confirmarSenha === "") {
+      mensagem = "Por favor, confirme sua senha"
+      this.deuErro.verificador = true;
+    }
+
+    this.deuErro.mansagem = mensagem
+    
+    return this.deuErro.verificador
   }
 }

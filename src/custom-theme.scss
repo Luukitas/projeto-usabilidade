@@ -37,6 +37,10 @@ $light-cyan-disabled: rgba(224, 251, 252, 0.38);
 $burnt-sienna: rgba(238, 108, 77, 1);
 $gunmetal: rgba(41, 50, 65, 1);
 
+body, input, h1, h4, h5, h6, label, p, a, button, strong, textarea{
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 /* SCSS Gradient */
 $gradient-top: linear-gradient(0deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
 $gradient-right: linear-gradient(90deg, #3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #293241ff);
@@ -74,6 +78,39 @@ $gradient-radial: radial-gradient(#3d5a80ff, #98c1d9ff, #e0fbfcff, #ee6c4dff, #2
 .mat-calendar-body-disabled > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical){
   color: $dark-sky-blue-disabled !important;
 }
+
+.inputs{
+  background-color: rgb(231, 231, 231);
+  border: none;
+  border-radius: 9px;
+  padding: 10px;
+}
+
+.inputs:focus{
+  background-color: white !important;
+  border-color: $burnt-sienna;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px $burnt-sienna;
+    outline: 0 none;
+}
+
+.botao-primario{
+  background-color: $burnt-sienna;
+  color: white;
+  font-weight: 800;
+}
+
+.botao-primario:hover, .botao-primario:focus {
+  background-color: rgb(199, 77, 47) !important;
+  color: white !important;
+}
+
+.card-title{
+  color: $burnt-sienna;
+}
+
+// .card{
+//   border-color: $burnt-sienna
+// }
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

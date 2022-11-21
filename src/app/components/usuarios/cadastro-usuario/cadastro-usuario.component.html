@@ -1,133 +1,90 @@
+<div *ngIf="this.deuErro.verificador" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+  <i class="bi bi-exclamation-circle-fill" style="margin-right: 5px;"></i>
+  <div>
+       {{this.deuErro.mansagem}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 text-center">
+    <p class="display-6 m-3 fonte-padrao">Cadastro de funcionário</p>
+  </div>
+</div>
+
 <mat-card>
+  
   <form [formGroup]="form" (submit)="onCadastrarUsuario()">
+    
+    <div class="row">
 
-    <section *ngIf="this.erroSenha" class="alert alert-danger d-flex align-items-center" role="alert">
-      <section>
-        Senhas não coincidem. Digite-as corretamente.
-      </section>
-    </section>
+      <div class="col-12 mb-3">
+        <section *ngIf="this.erroSenha" class="alert alert-danger d-flex align-items-center" role="alert">
+          <section>
+            Senhas não coincidem. Digite-as corretamente.
+          </section>
+        </section>
+      </div>
 
-<mat-form-field class="nome">
-  <mat-label>Nome Completo</mat-label>
-  <input
-  required
-  pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$"
-  minlength="2"
-  type="text"
-  matInput
-  placeholder="ex: Antônio Drauzio Varella"
-  formControlName="nome"
-  name="nome">
-  <mat-error>Digite um nome válido</mat-error>
-</mat-form-field>
+      <div class="col-12 mb-3">
+          <label class="form-label" for="nome">Nome Completo:</label>
+          <input required pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$" minlength="2" type="text"
+            class="form-control inputs" placeholder="ex: Adolfo Lutz" formControlName="nome" name="nome">
+      </div>
 
-<mat-form-field class="cpf">
-  <mat-label>Informe seu CPF</mat-label>
-  <input
-  required
-  minlength="14"
-  maxlength="14"
-  type="text"
-  matInput
-  placeholder="ex: 123.456.789-10"
-  formControlName="cpf"
-  name="cpf"
-  [(ngModel)]="this.valorCpf"
-  (keypress)="this.formatarCpf()">
-  <mat-error>Digite um CPF válido</mat-error>
-</mat-form-field>
+      <div class="col-6 mb-3">
+          <label class="form-label" for="nome">Informe seu CPF:</label>
+          <input required minlength="14" maxlength="14" type="text"  placeholder="ex: 123.456.789-10"
+            formControlName="cpf" class="form-control inputs" name="cpf" [(ngModel)]="this.valorCpf" (keypress)="this.formatarCpf()">
+          
+      </div>
 
-<mat-form-field class="idade">
-  <input
-  required
-  pattern="[0-9]+"
-  minlength="2"
-  maxlength="2"
-  type="text"
-  matInput
-  placeholder="Idade"
-  formControlName="idade"
-  name="idade">
-  <mat-error></mat-error>
-</mat-form-field>
+      <div class="col-6 mb-3">
+          <label class="form-label" for="nome">Idade:</label>
+          <input required pattern="[0-9]+" minlength="2" maxlength="2" type="text"  placeholder="Idade"
+            formControlName="idade" class="form-control inputs" name="idade">
+      </div>
 
-<mat-form-field appearance="fill" class="tipoUsuario">
-  <mat-label>Tipo de usuário</mat-label>
-  <mat-select
-  required
-  formControlName="tipoUsuario"
-  name="tipoUsuario">
-    <mat-option *ngFor="let usuario of usuarios" [value]="usuario.value">
-      {{usuario.viewValue}}
-    </mat-option>
-  </mat-select>
-  <mat-error>Selecione um tipo de usuário</mat-error>
-</mat-form-field>
+      <div class="col-12 mb-3">
 
-<mat-form-field class="contato">
-  <mat-label>Contato</mat-label>
-  <input
-  pattern="[0-9\s-()+]+"
-  minlength="8"
-  maxlength="19"
-  type="text"
-  matInput
-  placeholder="ex: 11 91234-5678"
-  formControlName="contato"
-  name="contato">
-  <mat-error>Digite um número de contato válido</mat-error>
-</mat-form-field>
+        <label class="form-label" for="nome">Tipo de usuario:</label>
+        <select name="tipoUsuario" formControlName="tipoUsuario" id="tipoUsuario" class="form-control inputs">
+          <option value="0">Selecione o tipo de usuário</option>
+          <option *ngFor="let usuario of usuarios" [value]="usuario.value">{{usuario.viewValue}}</option>
+        </select>
+      </div>
 
-<mat-form-field class="crm">
-  <mat-label>Registro CRM</mat-label>
-  <input
-  pattern="[aA-zZ0-9\s/]+"
-  maxlength="13"
-  type="text"
-  matInput
-  placeholder="ex: CRM/SP 123456"
-  formControlName="crm"
-  name="crm">
-</mat-form-field>
+      <div class="col-6 mb-3">
+          <label class="form-label" for="nome">Contato:</label>
+          <input pattern="[0-9\s-()+]+" minlength="8" maxlength="19" type="text"  placeholder="ex: 11 91234-5678"
+            formControlName="contato" class="form-control inputs" name="contato">
+      </div>
 
-<mat-form-field class="email">
-  <mat-label>Digite um e-mail (será usado no login)</mat-label>
-  <input
-  required
-  pattern="^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+[aA-zZ]{2,4}"
-  type="email"
-  matInput
-  placeholder="E-mail"
-  formControlName="email"
-  name="email">
-  <mat-error>Digite um e-mail válido</mat-error>
-</mat-form-field>
+      <div class="col-6 mb-3">
+          <label class="form-label" for="nome">Registro CRM-SP:</label>
+          <input pattern="[aA-zZ0-9\s/]+" maxlength="13" type="text" maxlength="6"  placeholder="ex: CRM/SP 123456"
+            formControlName="crm" class="form-control inputs" name="crm">
+      </div>
 
-<mat-form-field class="senha">
-  <input
-  required
-  pattern="[aA-zZ0-9()-=@!#$%&*?]+"
-  type="password"
-  matInput
-  placeholder="Insira sua senha"
-  formControlName="senha"
-  name="password">
-  <mat-error>Digite uma senha válida</mat-error>
-</mat-form-field>
+      <div class="col-12 mb-3">
+          <label class="form-label" for="nome">Digite um e-mail (será usado no login):</label>
+          <input required pattern="^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+[aA-zZ]{2,4}" type="email"  placeholder="E-mail"
+            formControlName="email" class="form-control inputs" name="email">
+      </div>
 
-<mat-form-field class="senha">
-  <input
-  required
-  pattern="[aA-zZ0-9()-=@!#$%&*?]+"
-  type="password"
-  matInput
-  placeholder="Confirme sua senha"
-  formControlName="confirmarSenha"
-  name="confirmarSenha">
-  <mat-error>Senhas não coincidem</mat-error>
-</mat-form-field>
+      <div class="col-12 mb-3">
+          <label class="form-label" for="nome">Senha:</label>
+          <input required pattern="[aA-zZ0-9()-=@!#$%&*?]+" type="password"  placeholder="Insira sua senha"
+            formControlName="senha" class="form-control inputs" name="password">
+      </div>
 
-<button class="botao mb-3" mat-raised-button color="warn">Cadastrar</button>
-<p class="text-center">Já tem uma conta? <a data-toggle="tab" [href]="['login']">Fazer login</a></p>
+      <div class="col-12 mb-3">
+          <label class="form-label" for="nome">Confirme sua senha:</label>
+          <input required pattern="[aA-zZ0-9()-=@!#$%&*?]+" type="password"  placeholder="Confirme sua senha"
+            formControlName="confirmarSenha" class="form-control inputs" name="confirmarSenha">
+      </div>
+    </div>
+
+    <button class="botao mb-3" mat-raised-button color="warn">Cadastrar</button>
+    <p class="text-center">Já tem uma conta? <a data-toggle="tab" [href]="['login']">Fazer login</a></p>
   </form>
 </mat-card>

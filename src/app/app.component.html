@@ -1,9 +1,9 @@
-<app-menu *ngIf="this.mostrarMenu"></app-menu>
+<app-menu *ngIf="this.nomeComponente !== 'LoginUsuarioComponent' && this.nomeComponente !== 'CadastroUsuarioComponent'"></app-menu>
 
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <router-outlet></router-outlet>
+<div [ngClass]="{'container': this.nomeComponente !== 'LoginUsuarioComponent'}">
+  <div [ngClass]="{'row': this.nomeComponente !== 'LoginUsuarioComponent'}">
+    <div [ngClass]="{'col-12': this.nomeComponente !== 'LoginUsuarioComponent'}">
+      <router-outlet (activate)="this.pegarNome($event)"></router-outlet>
     </div>
   </div>
 </div>

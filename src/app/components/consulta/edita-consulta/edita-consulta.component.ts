@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Consultas } from 'src/app/models/consultas';
 import { ConsultaService } from 'src/app/services/consulta-services/consulta.service';
+import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Usuarios } from 'src/app/models/usuarios';
+import { UsuarioService } from 'src/app/services/usuarios-services/usuarios.service';
 
 @Component({
   selector: 'app-edita-consulta',
@@ -11,33 +14,40 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class EditaConsultaComponent implements OnInit {
 
-  constructor(public datepipe: DatePipe, private consultaService: ConsultaService, private route: ActivatedRoute, private router: Router) { }
+  constructor(public datepipe: DatePipe, private consultaService: ConsultaService, private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService) { }
 
-  valorNome: string = "";
-  valorCpf:string = "";
-  valorEmail:string = "";
+  valorNomePaciente: string = "";
+  valorNomeMedico: string = "";
   valorData:any;
-  valorDescricao: string = "";
+  valorDescricao: string = ""
   id: any;
   entrada = {};
+
+  verificadorUsuario: any;
+  pacienteSelecionado: any;
+  medicoSelecionado: any;
+  usuarioSelecionado!:Usuarios;
+  mostrarBuscaPacientes: boolean = false;
+  mostrarBuscaMedicos: boolean = false;
+
+  deuErro = {
+    verificador: false,
+    mansagem: ""
+  }
+
+  listaPacientes!: Usuarios[]
+  listaMedicos!: Usuarios[]
   
   consulta: any = {};
   
   ngOnInit(): void {
     // this.valorData = this.datepipe.transform(this.valorData, 'dd/MM/yyyy')
+    this.usuarioSelecionado = environment.login;
     const id = this.route.snapshot.paramMap.get('id');
     this.entrada = {
       _id: id
     };
     this.pesquisarConsulta(this.entrada)
-  }
-
-  formatarCpf = () => {
-    if (this.valorCpf.length === 3 || this.valorCpf.length === 7) {
-      this.valorCpf = this.valorCpf + "."
-    }if (this.valorCpf.length === 11) {
-      this.valorCpf = this.valorCpf + "-"
-    }
   }
 
   mostrarValorData = () => {
@@ -46,26 +56,29 @@ export class EditaConsultaComponent implements OnInit {
   }
 
   cadastrarAgendamento = () => {
-    let data = this.mostrarValorData();
-    this.consulta = {
-      "nome": this.valorNome,
-      "email":this.valorEmail,
-      "data": data,
-      "cpf": this.valorCpf,
-      "descricao": this.valorDescricao
+    if (!this.verificarCamposVazios()) {
+      let data = this.mostrarValorData();
+      this.consulta = {
+        "paciente": JSON.stringify(this.pacienteSelecionado),
+        "medico":JSON.stringify(this.medicoSelecionado),
+        "data": data,
+        "descricao": this.valorDescricao
+      }
+  
+      this.consultaService.editarConsulta(this.id, this.consulta).subscribe((response) => {})
+      this.router.navigate(['/painel-inicial'])
     }
-
-    this.consultaService.editarConsulta(this.id, this.consulta).subscribe((response) => {})
-    this.router.navigate(['/painel-inicial'])
-
-    
   }
+
   pesquisarConsulta = (entrada: any) => {
+    console.log(entrada);
+    
     this.consultaService.getConsulta(entrada).subscribe((data: Consultas[]) =>{
-      this.consulta = data;
-      this.valorNome = this.consulta.nome
-      this.valorCpf = this.consulta.cpf
-      this.valorEmail = this.consulta.email
+      this.consulta = data[0];
+      console.log(this.consulta);
+      
+      this.pacienteSelecionado = this.consulta.paciente
+      this.medicoSelecionado = this.consulta.medico
       this.valorData = this.consulta.data
       this.valorDescricao = this.consulta.descricao
       this.id = this.consulta._id
@@ -80,6 +93,65 @@ export class EditaConsultaComponent implements OnInit {
     let mes = lista[1];
     let ano = lista[2];
     return `${ano}-${mes}-${dia}`
+  }
+
+
+  selecionar = (variavel:any, paciente: any) => {
+    if (variavel === 1) {
+      this.pacienteSelecionado = paciente
+    }else{
+      this.medicoSelecionado = paciente
+    }
+  }
+
+  buscarPaciente = () => {
+    let entrada = {
+      "nome": this.valorNomePaciente,
+      "tipoUsuario": "2"
+    }
+    
+    this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
+       this.listaPacientes = data;
+       this.mostrarBuscaPacientes = true;
+       console.log(this.listaPacientes);
+       
+      });
+  }
+
+  buscarMedico = () => {
+    let entrada = {
+      "nome": this.valorNomeMedico,
+      "tipoUsuario": "0"
+    }
+    
+    this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
+       this.listaMedicos = data;
+       this.mostrarBuscaMedicos = true;
+      });
+  }
+
+
+  verificarCamposVazios = () => {
+    if (this.pacienteSelecionado === null || this.pacienteSelecionado === undefined) {
+      this.deuErro.verificador = true;
+      this.deuErro.mansagem = "O campo paciente é obrigatório. Por favor, insira um paciente"
+    }
+    else if (this.medicoSelecionado === null || this.medicoSelecionado === undefined) {
+      this.deuErro.verificador = true;
+      this.deuErro.mansagem = "O campo médico é obrigatório. Por favor, insira um médico"
+    }
+    else if (this.valorData === "" || this.valorData === undefined) {
+      this.deuErro.verificador = true;
+      this.deuErro.mansagem = "O campo Data do Agendamento é obrigatório. Por favor, insira uma data para consulta"
+    }
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+
+    return this.deuErro.verificador
   }
 
 }

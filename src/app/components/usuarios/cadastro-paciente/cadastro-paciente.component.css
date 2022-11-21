@@ -1,12 +1,4 @@
 
-
-.formulario-cadastro{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    width: 70%;
-}
-
 .botao-voltar{
     color: rgba(238, 108, 77, 1);
     font-weight: 800 !important;

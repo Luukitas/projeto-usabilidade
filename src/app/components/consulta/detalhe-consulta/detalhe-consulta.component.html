@@ -8,21 +8,42 @@
     <main class="col-3"></main>
     <main class="col-6">
         <section class="row">
-            <section class="col-12 mb-4">
-                <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Nome do paciente</p>
-                <p class="h4 m-0 fonte-padrao">{{this.consulta.nome}}</p>
-            </section>
+
+
+            <div class="card p-3 mb-3 row">
+                <h1 class="card-title">
+                  Dados do paciente
+                </h1>
+                
+                <section class="col-12 mb-4">
+                    <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Nome do paciente</p>
+                    <p class="h4 m-0 fonte-padrao">{{this.consulta.paciente.nome}}</p>
+                </section>
+                <section class="col-12 mb-4">
+                    <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">E-mail do paciente</p>
+                    <p class="h4 m-0 fonte-padrao">{{this.consulta.paciente.email}}</p>
+                </section>
+            </div>
+
+            <div class="card p-3 mb-3 row">
+                <h1 class="card-title">
+                  Dados do médico
+                </h1>
+
+                <section class="col-12 mb-4">
+                    <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Nome do médico</p>
+                    <p class="h4 m-0 fonte-padrao">{{this.consulta.medico.nome}}</p>
+                </section>
+            </div>
+
             <section class="col-12 mb-4">
                 <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Data da Consulta</p>
                 <p class="h4 m-0 fonte-padrao">{{this.consulta.data}}</p>
             </section>
             <section class="col-12 mb-4">
-                <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">E-mail do paciente</p>
-                <p class="h4 m-0 fonte-padrao">{{this.consulta.email}}</p>
-            </section>
-            <section class="col-12 mb-4">
                 <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Descrição</p>
-                <p class="h4 m-0 fonte-padrao">{{this.consulta.descricao}}</p>
+                <p *ngIf="this.consulta.descricao !== ''" class="h4 m-0 fonte-padrao">{{this.consulta.descricao}}</p>
+                <p *ngIf="this.consulta.descricao === ''" class="h4 m-0 fonte-padrao">--</p>
             </section>
 
             <section class="d-flex justify-content-end col-12 mb-4">

@@ -1,7 +1,41 @@
-body, input, h4, h5, h6, h1, label, p, a, button{
+body, input, h4, h2, h5, h6, h1, label, p, a, button{
   font-family: 'Montserrat', sans-serif !important;
 }
 
 .login{
   height: 100vh;
+  width: 100vw;
+}
+
+.background{
+  background-image: url('https://t4.ftcdn.net/jpg/01/59/81/81/360_F_159818106_5XUVW3WqsQVqQatFBpYnXtHrRRMn0mtv.jpg');
+  height: 100vh;
+  padding: 0;
+  width: 35%;
+}
+
+.frase-background{
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+.frase-background img{
+  width: 150px
+}
+
+.tela-login{
+  min-width: 100vw !important;
+}
+
+@media screen and (max-width: 800px) {
+  .background{
+    display: none;
+  }
 }

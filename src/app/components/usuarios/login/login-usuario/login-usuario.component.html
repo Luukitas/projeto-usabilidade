@@ -1,24 +1,48 @@
-<section class="row login d-flex justify-content-center align-items-center">
-  <section style="max-width: 300px; margin: auto;">
-    <form>
-      <section class="text-center">
-        <img src="https://img.freepik.com/free-vector/cartoon-doctors-nurses_52683-59918.jpg?
-    w=740&t=st=1667659934~exp=1667660534~hmac=f4ba35b88927a1547887275d9746b69bbbddad00afc
-    783650a17ff86ac52ef92" height="200" alt="Projeto Logo">
-      </section>
-      <h1 class="text-center mt-3">Login</h1>
-      <label class="sr-only" for="emailAddress"></label>
-      <input required type="email" class="form-control mb-3" placeholder="Endereço de e-mail" id="emailAddress"
-        name="email" [(ngModel)]="this.valorEmail">
-      <label class="sr-only mb-1" for="password"></label>
-      <input required type="password" class="form-control" placeholder="Insira sua senha" id="password" name="senha"
-        [(ngModel)]="this.valorSenha">
-      <section class="text-center mt-4">
-        <button (click)="fazerLogin()" type="button" class="btn btn-lg btn-primary mb-3">Fazer login</button>
-      </section>
-    </form>
+<section class="tela-Login">
+  
+  <section class="row login d-flex justify-content-center align-items-center">
+    <section class="background">
+      <div class="frase-background">
+        <p class="display-6">Faça o que poucos fazem e conquiste aquilo que muitos querem.</p>
+        <img src="https://i.postimg.cc/76JknY5b/KLINIK-2-removebg-preview.png" alt="logo-1">
+      </div>
+    </section>
+    <section style="max-width: 300px; margin: auto;">
+      <form>
 
-    <p class="text-center">Não tem uma conta? <a data-toggle="tab" [href]="['cadastro-usuario']">Registrar-se</a></p>
+        <div class="row">
 
+          <div class="col-12">
+            <section class="text-center">
+              <img src="https://i.postimg.cc/0j1CXcyD/KLINIK.png" height="200" alt="Projeto Logo">
+            </section>
+          </div>
+
+          <h1 class="text-center mt-3">Entrar</h1>
+
+          <div class="col-12">
+            <label class="sr-only" for="emailAddress" style="margin: 5px">Login:</label>
+            <input required type="email" class="form-control mb-3 inputs" placeholder="Endereço de e-mail" id="emailAddress"
+              name="email" [(ngModel)]="this.valorEmail">
+          </div>
+
+          <div class="col-12">
+            <label class="sr-only mb-1" for="password" style="margin: 5px">Senha:</label>
+            <input required type="password" class="form-control inputs" placeholder="Insira sua senha" id="password" name="senha"
+              [(ngModel)]="this.valorSenha">
+          </div>
+
+        </div>
+
+
+        <section class="text-center mt-4">
+          <button (click)="fazerLogin()" type="button" class="btn btn-lg botao-primario mb-3">Fazer login</button>
+        </section>
+      </form>
+  
+      <p class="text-center">Não tem uma conta? <a data-toggle="tab" [href]="['cadastro-usuario']">Registrar-se</a></p>
+  
+    </section>
   </section>
 </section>
+

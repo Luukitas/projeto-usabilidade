@@ -14,6 +14,7 @@ export class AppComponent {
 
   usuario = environment.login;
   verificador = 0
+  nomeComponente: string = "";
 
   title = 'projeto-usabilidade';
 
@@ -28,5 +29,9 @@ export class AppComponent {
       valor => this.mostrarMenu = valor
       
     )
+  }
+
+  pegarNome = (nome: any) => {
+    this.nomeComponente = nome.constructor.name
   }
 }

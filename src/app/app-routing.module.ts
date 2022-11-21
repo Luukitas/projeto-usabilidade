@@ -8,17 +8,20 @@ import { LoginUsuarioComponent } from './components/usuarios/login/login-usuario
 import { CadastroUsuarioComponent } from './components/usuarios/cadastro-usuario/cadastro-usuario.component'
 import { AuthGuardService } from './auth-guard.service';
 import { MenuComponent } from './components/menu/menu.component';
+import { CadastroPacienteComponent } from './components/usuarios/cadastro-paciente/cadastro-paciente.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: "login", component: LoginUsuarioComponent},
-  {path: "cadastro-usuario", component: CadastroUsuarioComponent, canActivate: [AuthGuardService]},
+  {path: "cadastro-usuario", component: CadastroUsuarioComponent},
   {path: "cadastro-consulta", component: ConsultaComponent, canActivate: [AuthGuardService]},
   {path: "painel-inicial", component: PainelInicialComponent, canActivate: [AuthGuardService]},
   {path: "detalhe-consulta/:id", component: DetalheConsultaComponent, canActivate: [AuthGuardService]},
   {path: "editar-consulta/:id", component: EditaConsultaComponent, canActivate: [AuthGuardService]},
-  {path: "menu", component: MenuComponent, canActivate: [AuthGuardService]}
+  {path: "menu", component: MenuComponent, canActivate: [AuthGuardService]},
+  {path: "cadastro-paciente", component: CadastroPacienteComponent, canActivate: [AuthGuardService]},
+  {path: "cadastro-paciente/:veioEditar", component: CadastroPacienteComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

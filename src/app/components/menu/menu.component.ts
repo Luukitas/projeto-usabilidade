@@ -1,5 +1,6 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   usuario = {};
   verificador = 0
@@ -21,6 +22,11 @@ export class MenuComponent implements OnInit {
   ngOnChanges = (changes: SimpleChanges) => {
     this.usuario = environment.login;
     this.verificador = Object.keys(this.usuario).length;
+  }
+
+  sair = () => {
+    environment.login = {};
+    this.router.navigate(['/login'])
   }
 
 }

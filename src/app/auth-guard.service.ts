@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 export class AuthGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    console.log(environment.login);
+    
     if (Object.keys(environment.login).length > 0) {
       return true;
     }else{

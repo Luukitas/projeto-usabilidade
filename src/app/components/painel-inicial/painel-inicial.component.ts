@@ -29,7 +29,6 @@ export class PainelInicialComponent implements OnInit {
   
   ngOnInit(): void {
     this.usuarioSelecionado = environment.login;
-    console.log(this.usuarioSelecionado);
     
     this.selected = new Date();
     this.pesquisarConsulta(this.dataHoje);
