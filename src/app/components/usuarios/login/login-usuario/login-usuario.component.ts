@@ -24,11 +24,15 @@ export class LoginUsuarioComponent {
   constructor(public loginService: LoginService, public router: Router) { }
 
   fazerLogin = () => {
+
+    this.deuErro = false;
+    this.erroNPermitido = false;
+    
     let entrada = {
       email: this.valorEmail,
       senha: this.valorSenha
     }
-    if(this.valorTipoUsuario = "2") {
+    if(this.valorTipoUsuario === "2") {
       this.erroNPermitido = true;
       return;
     }

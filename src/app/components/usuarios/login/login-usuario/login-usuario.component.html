@@ -1,16 +1,5 @@
 <section class="tela-Login">
 
-  <section *ngIf="this.deuErro" class="alert alert-danger d-flex align-items-center" role="alert">
-    <section>
-      E-mail ou senha incorretos. <br /> Por favor, tente novamente.
-    </section>
-  </section>
-
-  <section *ngIf="this.erroNPermitido" class="alert alert-danger d-flex align-items-center" role="alert">
-    <section>
-      Login de pacientes não permitidos.
-    </section>
-  </section>
 
   <section class="row login d-flex justify-content-center align-items-center">
     <section class="background">
@@ -23,6 +12,19 @@
       <form>
 
         <div class="row">
+
+          
+          <section *ngIf="this.deuErro" class="alert alert-danger d-flex align-items-center" role="alert">
+            <section>
+              E-mail ou senha incorretos. <br /> Por favor, tente novamente.
+            </section>
+          </section>
+        
+          <section *ngIf="this.erroNPermitido" class="alert alert-danger d-flex align-items-center" role="alert">
+            <section>
+              Login de pacientes não permitidos.
+            </section>
+          </section>
 
           <div class="col-12">
             <section class="text-center">
