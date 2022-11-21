@@ -15,7 +15,9 @@ export class LoginUsuarioComponent {
   entrada!: any;
   valorEmail: string = "";
   valorSenha: string = "";
+  valorTipoUsuario: string = "";
   deuErro = false;
+  erroNPermitido = false;
 
   login: any = {};
 
@@ -25,6 +27,10 @@ export class LoginUsuarioComponent {
     let entrada = {
       email: this.valorEmail,
       senha: this.valorSenha
+    }
+    if(this.valorTipoUsuario = "2") {
+      this.erroNPermitido = true;
+      return;
     }
     this.loginService.getUsuarios(entrada).subscribe((data: Login[]) => {
        this.login = data;

@@ -1,5 +1,17 @@
 <section class="tela-Login">
-  
+
+  <section *ngIf="this.deuErro" class="alert alert-danger d-flex align-items-center" role="alert">
+    <section>
+      E-mail ou senha incorretos. <br /> Por favor, tente novamente.
+    </section>
+  </section>
+
+  <section *ngIf="this.erroNPermitido" class="alert alert-danger d-flex align-items-center" role="alert">
+    <section>
+      Login de pacientes não permitidos.
+    </section>
+  </section>
+
   <section class="row login d-flex justify-content-center align-items-center">
     <section class="background">
       <div class="frase-background">
@@ -39,9 +51,9 @@
           <button (click)="fazerLogin()" type="button" class="btn btn-lg botao-primario mb-3">Fazer login</button>
         </section>
       </form>
-  
+
       <p class="text-center">Não tem uma conta? <a data-toggle="tab" [href]="['cadastro-usuario']">Registrar-se</a></p>
-  
+
     </section>
   </section>
 </section>

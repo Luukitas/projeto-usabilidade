@@ -33,8 +33,9 @@ export class CadastroUsuarioComponent implements OnInit {
   usuario!: Usuarios;
 
   usuarios: Usuario[] = [
-    {value: 'medico-0', viewValue: 'Médico'},
-    {value: 'recepcionista-1', viewValue: 'Recepcionista'},
+    {value: '0', viewValue: 'Médico(a)'},
+    {value: '1', viewValue: 'Recepcionista'},
+    {value: '3', viewValue: 'Enfermeiro(a)'}
   ];
 
   formatarCpf = () => {
@@ -96,13 +97,15 @@ export class CadastroUsuarioComponent implements OnInit {
       senha: new FormControl (null, {
         validators: [
           Validators.required,
-          Validators.pattern("[aA-zZ0-9()-=@!#$%&*?]+")
+          Validators.pattern("[aA-zZ0-9()-=@!#$%&*?]+"),
+          Validators.minLength(5)
         ]
       }),
       confirmarSenha: new FormControl (null, {
         validators: [
           Validators.required,
-          Validators.pattern("[aA-zZ0-9()-=@!#$%&*?]+")
+          Validators.pattern("[aA-zZ0-9()-=@!#$%&*?]+"),
+          Validators.minLength(5)
         ]
       })
     })
@@ -112,7 +115,7 @@ export class CadastroUsuarioComponent implements OnInit {
     this.deuErro.verificador = false;
     this.deuErro.mansagem = ""
     if (!this.validarCamposObrigatorios()) {
-      
+
       if(this.form.invalid) {
         return;
       }
@@ -144,7 +147,7 @@ export class CadastroUsuarioComponent implements OnInit {
 
 
     console.log(this.form.value.tipoUsuario);
-    
+
 
     if (this.form.value.nome === null || this.form.value.nome === "") {
       mensagem = "O campo Nome é obrigatório"
@@ -184,7 +187,7 @@ export class CadastroUsuarioComponent implements OnInit {
     }
 
     this.deuErro.mansagem = mensagem
-    
+
     return this.deuErro.verificador
   }
 }
