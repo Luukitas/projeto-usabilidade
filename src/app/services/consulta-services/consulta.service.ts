@@ -18,7 +18,6 @@ export class ConsultaService {
   url:string = "http://localhost:8080/api/v1/consultas"
 
   salvarConsulta = (consulta:Consultas) => {
-    console.log(consulta);
     
     return this.httpClient.post<Consultas>(this.url, JSON.stringify(consulta), this.httpOptions)
       .pipe(

@@ -53,11 +53,23 @@ export class CadastroPacienteComponent implements OnInit {
   }
 
 
-  formatarCpf = () => {
+  formatarCpf = (event: any) => {
+    this.formatarCampoNumerico(event)
     if (this.pacienteSelecionado.cpf.length === 3 || this.pacienteSelecionado.cpf.length === 7) {
       this.pacienteSelecionado.cpf = this.pacienteSelecionado.cpf + "."
     }if (this.pacienteSelecionado.cpf.length === 11) {
       this.pacienteSelecionado.cpf = this.pacienteSelecionado.cpf + "-"
+    }
+  }
+
+  formatarCampoNumerico = (event:any) => {
+    var permitido = false;
+    
+    if(event.keyCode > 47 && event.keyCode < 58){
+        permitido = true;
+    }
+    if (!permitido) {
+        event.preventDefault();
     }
   }
 
@@ -70,7 +82,6 @@ export class CadastroPacienteComponent implements OnInit {
     this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
        this.listaPacientes = data;
        this.mostrarBuscaPacientes = true;
-       console.log(this.listaPacientes);
        
       });
   }

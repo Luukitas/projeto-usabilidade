@@ -21,6 +21,7 @@ export class CadastroUsuarioComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, public router: Router) {}
 
   valorCpf: string = "";
+  valorTelefone: string = "";
   form!: FormGroup;
   erroSenha = false;
 
@@ -38,12 +39,14 @@ export class CadastroUsuarioComponent implements OnInit {
     {value: '3', viewValue: 'Enfermeiro(a)'}
   ];
 
-  formatarCpf = () => {
+  formatarCpf = (event:any) => {
+    this.formatarCampoNumerico(event)
     if (this.valorCpf.length === 3 || this.valorCpf.length === 7) {
       this.valorCpf = this.valorCpf + "."
     }if (this.valorCpf.length === 11) {
       this.valorCpf = this.valorCpf + "-"
     }
+    
   }
 
   ngOnInit(): void {
@@ -142,12 +145,33 @@ export class CadastroUsuarioComponent implements OnInit {
     }
   }
 
+  formatarCampoTelefone = (event:any) => {
+    this.formatarCampoNumerico(event);
+    if (this.valorTelefone.length === 1) {
+      this.valorTelefone = "(" + this.valorTelefone
+    }
+    if (this.valorTelefone.length === 3) {
+      this.valorTelefone = this.valorTelefone + ") "
+    }
+    if (this.valorTelefone.length === 10) {
+      this.valorTelefone = this.valorTelefone + "-"
+    }
+  }
+
+  formatarCampoNumerico = (event:any) => {
+    
+    var permitido = false;
+    
+    if(event.keyCode > 47 && event.keyCode < 58){
+        permitido = true;
+    }
+    if (!permitido) {
+        event.preventDefault();
+    }
+  }
+
   validarCamposObrigatorios = () => {
     let mensagem = "";
-
-
-    console.log(this.form.value.tipoUsuario);
-
 
     if (this.form.value.nome === null || this.form.value.nome === "") {
       mensagem = "O campo Nome é obrigatório"
@@ -162,7 +186,7 @@ export class CadastroUsuarioComponent implements OnInit {
       this.deuErro.verificador = true;
     }
     else if (this.form.value.tipoUsuario === null || this.form.value.tipoUsuario === "") {
-      mensagem = "O Tipo de Usuário é obrigatório"
+      mensagem = "O campo Ocupação é obrigatório"
       this.deuErro.verificador = true;
     }
     else if (this.form.value.contato === null || this.form.value.contato === "") {

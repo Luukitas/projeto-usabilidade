@@ -41,6 +41,10 @@
                 <p class="h4 m-0 fonte-padrao">{{this.consulta.data}}</p>
             </section>
             <section class="col-12 mb-4">
+                <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Horário da Consulta</p>
+                <p class="h4 m-0 fonte-padrao">{{this.consulta.hora}}</p>
+            </section>
+            <section class="col-12 mb-4">
                 <p class="lead mb-1 fonte-padrao" style="font-size: 18px;">Descrição</p>
                 <p *ngIf="this.consulta.descricao !== ''" class="h4 m-0 fonte-padrao">{{this.consulta.descricao}}</p>
                 <p *ngIf="this.consulta.descricao === ''" class="h4 m-0 fonte-padrao">--</p>
@@ -73,7 +77,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-danger" (click)="this.cancelarConsuta(this.entrada);">Cancelar consulta</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="this.cancelarConsuta(this.entrada);">Cancelar consulta</button>
         </div>
       </div>
     </div>

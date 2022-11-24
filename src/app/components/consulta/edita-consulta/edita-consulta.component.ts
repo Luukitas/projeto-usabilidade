@@ -19,6 +19,7 @@ export class EditaConsultaComponent implements OnInit {
   valorNomePaciente: string = "";
   valorNomeMedico: string = "";
   valorData:any;
+  valorHora: any;
   valorDescricao: string = ""
   id: any;
   entrada = {};
@@ -62,6 +63,7 @@ export class EditaConsultaComponent implements OnInit {
         "paciente": JSON.stringify(this.pacienteSelecionado),
         "medico":JSON.stringify(this.medicoSelecionado),
         "data": data,
+        "hora": this.valorHora,
         "descricao": this.valorDescricao
       }
   
@@ -71,15 +73,14 @@ export class EditaConsultaComponent implements OnInit {
   }
 
   pesquisarConsulta = (entrada: any) => {
-    console.log(entrada);
     
     this.consultaService.getConsulta(entrada).subscribe((data: Consultas[]) =>{
       this.consulta = data[0];
-      console.log(this.consulta);
       
       this.pacienteSelecionado = this.consulta.paciente
       this.medicoSelecionado = this.consulta.medico
       this.valorData = this.consulta.data
+      this.valorHora = this.consulta.hora
       this.valorDescricao = this.consulta.descricao
       this.id = this.consulta._id
       this.valorData = this.formatarData();
@@ -88,7 +89,6 @@ export class EditaConsultaComponent implements OnInit {
 
   formatarData = () => {
     let lista = this.valorData.split('/')
-    console.log(lista);
     let dia = lista[0];
     let mes = lista[1];
     let ano = lista[2];
@@ -113,7 +113,6 @@ export class EditaConsultaComponent implements OnInit {
     this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
        this.listaPacientes = data;
        this.mostrarBuscaPacientes = true;
-       console.log(this.listaPacientes);
        
       });
   }

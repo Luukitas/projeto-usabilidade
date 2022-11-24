@@ -108,7 +108,11 @@
             
             <div class="mb-3">
                 <label class="form-label" for="data">Data do agendamento:</label>
-                <input class="form-control inputs" [(ngModel)]="this.valorData" type="date" name="Data" id="data">
+                <input class="form-control inputs" value="2018-07-22" [(ngModel)]="this.valorData" type="date" name="Data" id="data">
+            </div>
+            <div>
+              <label class="form-label" for="hora">Horário do agendamento:</label>
+              <input id="hora" class="form-control inputs" type="time" [(ngModel)]="this.valorHora" name="hora">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="descricao">Descrição: (opcional)</label>
@@ -128,3 +132,4 @@
     </div>
     <div class="col-3"></div>
 </div>
+

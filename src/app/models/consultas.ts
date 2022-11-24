@@ -3,5 +3,6 @@ export interface Consultas {
     paciente: any,
     medico: any,
     data: any,
+    hora:any,
     descricao: string
 }

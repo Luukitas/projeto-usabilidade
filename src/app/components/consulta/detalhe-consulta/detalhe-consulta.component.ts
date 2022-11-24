@@ -27,7 +27,6 @@ export class DetalheConsultaComponent implements OnInit {
   pesquisarConsulta = (entrada: any) => {
     this.consultaService.getConsulta(entrada).subscribe((data: Consultas[]) =>{
       this.consulta = data[0];
-      console.log(this.consulta);
       
     });
   }

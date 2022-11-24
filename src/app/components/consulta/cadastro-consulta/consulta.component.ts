@@ -19,6 +19,7 @@ export class ConsultaComponent implements OnInit {
   valorNomePaciente: string = "";
   valorNomeMedico: string = "";
   valorData:any;
+  valorHora: any;
   valorDescricao: string = ""
 
   verificadorUsuario: any;
@@ -44,7 +45,6 @@ export class ConsultaComponent implements OnInit {
     if (this.verificadorUsuario === "0") {
       this.medicoSelecionado = this.usuarioSelecionado
     }
-    
   }
 
   mostrarValorData = () => {
@@ -62,6 +62,7 @@ export class ConsultaComponent implements OnInit {
         "paciente": JSON.stringify(this.pacienteSelecionado),
         "medico":JSON.stringify(this.medicoSelecionado),
         "data": data,
+        "hora": this.valorHora,
         "descricao": this.valorDescricao
       }
       this.consultaService.salvarConsulta(this.consulta).subscribe((response) => {})
@@ -87,7 +88,6 @@ export class ConsultaComponent implements OnInit {
     this.usuarioService.getUsuarios(entrada).subscribe((data: Usuarios[]) => {
        this.listaPacientes = data;
        this.mostrarBuscaPacientes = true;
-       console.log(this.listaPacientes);
        
       });
   }

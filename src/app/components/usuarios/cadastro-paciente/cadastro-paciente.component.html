@@ -65,12 +65,12 @@
   
               <div class="mb-3">
                   <label class="form-label fonte-padrao" for="cpf">CPF:</label>
-                  <input class="form-control inputs fonte-padrao" maxlength="14" placeholder="ex: 000.000.000-00" [(ngModel)]="this.pacienteSelecionado.cpf" (keypress)="this.formatarCpf()" type="text" name="cpf" id="cpf">
+                  <input class="form-control inputs fonte-padrao" maxlength="14" placeholder="ex: 000.000.000-00" [(ngModel)]="this.pacienteSelecionado.cpf" (keypress)="this.formatarCpf($event)" type="text" name="cpf" id="cpf">
               </div>
   
               <div class="mb-3">
                   <label class="form-label fonte-padrao" for="idade">Idade:</label>
-                  <input class="form-control inputs fonte-padrao" maxlength="3" placeholder="Digite a idade do paciente" [(ngModel)]="this.pacienteSelecionado.idade" type="text" name="idade" id="idade">
+                  <input class="form-control inputs fonte-padrao" maxlength="3" placeholder="Digite a idade do paciente" [(ngModel)]="this.pacienteSelecionado.idade" (keypress)="this.formatarCampoNumerico($event)" type="text" name="idade" id="idade">
               </div>
   
               <div class="mb-3">

@@ -58,8 +58,6 @@ export class UsuarioService {
     const params = new HttpParams({
       fromObject: entrada as any
     })
-
-    console.log(this.url + '/' + id);
     
     
     return this.httpClient.put<Usuarios[]>(this.url + '/' + id, JSON.stringify(entrada), {params: params})

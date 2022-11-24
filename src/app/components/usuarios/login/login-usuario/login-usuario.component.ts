@@ -28,6 +28,7 @@ export class LoginUsuarioComponent {
     this.deuErro = false;
     this.erroNPermitido = false;
     
+    
     let entrada = {
       email: this.valorEmail,
       senha: this.valorSenha

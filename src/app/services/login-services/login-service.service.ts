@@ -30,8 +30,6 @@ export class LoginService {
       retry(2),
       catchError(this.handleError)
       );
-
-    console.log(dados);
     
 
     if (dados !== null) {
