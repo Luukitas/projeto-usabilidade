@@ -8,4 +8,4 @@ Thiago Masaharu Sakugawa - 820142348
 <br />
 <h1>Release 1.4.0</h1>
 <h2>Apresentação breve do projeto:</h2>
-Link para o vídeo: https://youtu.be/PuueZQuTULc
+Link para o vídeo: https://youtu.be/NBWuqrn57mg
