@@ -15,11 +15,11 @@
                 </div>
                 <ul *ngIf="!this.mostrarVazio" class="list-group list-group-flush mt-2">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Paciente</strong>
+                        <strong>Horário - Paciente</strong>
                         <strong class="mr-4">Ação</strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let consulta of consultas">
-                        <p>{{consulta.paciente.nome}}</p>
+                        <p>{{consulta.hora + ' - ' + consulta.paciente.nome}}</p>
                         <button class="btn btn-outline-secondary" [routerLink]="['/detalhe-consulta', consulta._id]">Saiba mais</button>
                     </li>
                 </ul>

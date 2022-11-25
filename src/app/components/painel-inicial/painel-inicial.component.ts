@@ -16,7 +16,7 @@ export class PainelInicialComponent implements OnInit {
 
   usuarioSelecionado: any;
 
-  consultas!: Consultas[];
+  consultas?: Consultas[];
   mostrarVazio?:boolean;
   
   selected?: Date | null | undefined;
@@ -45,6 +45,9 @@ export class PainelInicialComponent implements OnInit {
     
     this.painelInicialService.getConsultas(entrada).subscribe((data: Consultas[]) =>{
       this.consultas = data;
+
+      this.consultas = this.consultas.sort(((a,b) => 0 - (a.hora > b.hora? -1 : 1)))
+
       if (this.consultas.length === 0) {
         this.mostrarVazio = true;
       }else{
