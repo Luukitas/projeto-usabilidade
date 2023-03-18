@@ -24,6 +24,7 @@ export class CadastroUsuarioComponent implements OnInit {
   valorTelefone: string = "";
   form!: FormGroup;
   erroSenha = false;
+  indicadorSlide: number = 0;
 
 
   deuErro = {
@@ -50,6 +51,8 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.indicadorSlide);
+    
     this.form = new FormGroup({
       nome: new FormControl (null, {
         validators: [
@@ -213,5 +216,15 @@ export class CadastroUsuarioComponent implements OnInit {
     this.deuErro.mansagem = mensagem
 
     return this.deuErro.verificador
+  }
+
+  controlarSlide = (valor: string) =>{
+    console.log(this.indicadorSlide);
+    if (valor === "avancar") {
+      this.indicadorSlide = this.indicadorSlide + 1;
+    }else if (valor === "voltar") {
+      this.indicadorSlide = this.indicadorSlide - 1;
+    }
+    console.log(this.indicadorSlide);
   }
 }

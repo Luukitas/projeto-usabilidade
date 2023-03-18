@@ -38,9 +38,12 @@ export class LoginUsuarioComponent {
       return;
     }
     this.loginService.getUsuarios(entrada).subscribe((data: Login[]) => {
+      console.log(data);
+      
        this.login = data;
-       if(this.login.length > 0) {
-        environment.login = this.login[0];
+
+       if(this.login.result.length > 0) {
+        environment.login = this.login.result[0];
         this.router.navigate(["painel-inicial"])
        }
        else {

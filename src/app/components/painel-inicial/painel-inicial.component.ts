@@ -38,11 +38,15 @@ export class PainelInicialComponent implements OnInit {
   pesquisarConsulta = (entrada: any) => {
     entrada.data = this.selected;
     let dia = entrada.data.getDate();
+    if (dia < 10) {
+      dia = `0${dia}`
+    }
     let mes = entrada.data.getMonth() + 1;
     let ano = entrada.data.getFullYear();
     let data = `${dia}/${mes}/${ano}`
     entrada.data = data;
     
+    // console.log(entrada);
     this.painelInicialService.getConsultas(entrada).subscribe((data: Consultas[]) =>{
       this.consultas = data;
 

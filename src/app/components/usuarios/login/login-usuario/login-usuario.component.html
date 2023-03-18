@@ -16,7 +16,7 @@
           
           <section *ngIf="this.deuErro" class="alert alert-danger d-flex align-items-center" role="alert">
             <section>
-              E-mail ou senha incorretos. <br /> Por favor, tente novamente.
+              {{this.login.mensagem}}
             </section>
           </section>
         
